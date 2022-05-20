@@ -30,4 +30,9 @@ public class UserDAO implements IUserDAO{
     public boolean update(User user) throws SQLException {
         return false;
     }
+
+    @Override
+    public List<User> searchByName(String name) {
+        return null;
+    }
 }

@@ -30,4 +30,9 @@ public class BlogDAO implements IBlogDAO{
     public boolean update(Blog blog) throws SQLException {
         return false;
     }
+
+    @Override
+    public List<Blog> searchByName(String name) {
+        return null;
+    }
 }
