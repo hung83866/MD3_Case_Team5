@@ -1,16 +1,15 @@
 package model;
 
-import javax.swing.text.StringContent;
-import java.util.Date;
+import java.sql.Date;
 
 public class Blog {
     private int id;
     private String title;
-    private Date date;
+    private String date;
     private String content,img,description;
     private int role;
 
-    public Blog(int id, String title, Date date, String content, String img, String description, int role) {
+    public Blog(int id, String title, String date, String content, String img, String description, int role) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -20,7 +19,7 @@ public class Blog {
         this.role = role;
     }
 
-    public Blog(String title, Date date, String content, String img, String description, int role) {
+    public Blog(String title, String date, String content, String img, String description, int role) {
         this.title = title;
         this.date = date;
         this.content = content;
@@ -48,11 +47,11 @@ public class Blog {
         this.title = title;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
