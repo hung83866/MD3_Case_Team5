@@ -13,6 +13,7 @@ import static config.DBconnection.getConnection;
 
 public class UserDAO implements IUserDAO{
     private static final String INSERT_USER_SQL = "insert into user(username, email, password, img) VALUES (?, ?, ?, ?);";
+    private static final String INSERT_LOGIN = "insert into user(username, email, password) VALUES (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "select id,username,email,password,img from user where id =?";
     private static final String SELECT_ALL_USER = "select * from user";
     private static final String DELETE_USER_SQL = "delete from user where id = ?;";
@@ -36,6 +37,21 @@ public class UserDAO implements IUserDAO{
             printSQLException(e);
         }
     }
+
+    @Override
+    public void insertLogin(User user) throws SQLException {
+        System.out.println(INSERT_LOGIN);
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_LOGIN)) {
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassWord());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
