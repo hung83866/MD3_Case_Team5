@@ -15,7 +15,7 @@ public class UserDAO implements IUserDAO{
     private static final String INSERT_USER_SQL = "insert into user(username, email, password, img) VALUES (?, ?, ?, ?);";
     private static final String INSERT_LOGIN = "insert into user(username, email, password,img) VALUES (?, ?, ?,'');";
     private static final String SELECT_USER_BY_ID = "select id,username,email,password,img from user where id =?";
-    private static final String SELECT_ALL_USER = "select * from user";
+    private static final String SELECT_ALL_USER = "select * from user;";
     private static final String DELETE_USER_SQL = "delete from user where id = ?;";
     private static final String UPDATE_USER_SQL = "update user set username = ?,email= ?,password= ?,img= ? where id = ?;";
     private static final String SEARCH_BY_NAME = "select id,username,email,password,img from user where username = ?;";
@@ -37,7 +37,11 @@ public class UserDAO implements IUserDAO{
             printSQLException(e);
         }
     }
-
+    public static void main(String[] args) throws SQLException {
+        UserDAO userDAO = new UserDAO();
+        userDAO.insertLogin(new User("hungdz","hung@gmail.com","hung789"));
+        System.out.println(userDAO.selectAll());
+    }
     @Override
     public void insertLogin(User user) throws SQLException {
         System.out.println(INSERT_LOGIN);

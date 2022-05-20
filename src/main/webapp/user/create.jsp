@@ -28,28 +28,28 @@
                                 </c:if>
                             </p>
                             <p>
-                                <a href="/customers">Back to customer list</a>
+                                <a href="/UserServlet">Back to Login</a>
                             </p>
 
                             <form method="post">
                                 <fieldset>
                                     <div class="form-outline mb-4">
-                                        <input type="text" name="username" class="form-control form-control-lg" />
+                                        <input type="text" id="username" name="username" class="form-control form-control-lg" />
                                         <label class="form-label">Your Name</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="email" name="email" class="form-control form-control-lg" />
+                                        <input type="email" id="email" name="email" class="form-control form-control-lg" />
                                         <label class="form-label" >Your Email</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="password" name="password" class="form-control form-control-lg" />
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" />
                                         <label class="form-label">Password</label>
                                     </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="button"
+                                            <button
                                                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" >Register</button>
                                         </div>
 
