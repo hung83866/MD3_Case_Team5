@@ -138,5 +138,4 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/searchListUser.jsp");
         dispatcher.forward(request, response);
     }
-    
 }
