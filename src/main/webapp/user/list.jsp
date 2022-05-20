@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/users?action=create">Add New User</a>
+<a href="/UserServlet?action=create">Add New User</a>
 </body>
 </html>

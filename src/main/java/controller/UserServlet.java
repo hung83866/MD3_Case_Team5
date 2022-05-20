@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "UserServlet", value = "/UserServlet")
+@WebServlet(name = "UserServlet", urlPatterns = "/UserServlet")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
@@ -92,7 +92,7 @@ public class UserServlet extends HttpServlet {
         try {
             switch (action) {
                 case "create":
-                    insertUser(request, response);
+                    insertUser1(request, response);
                     break;
                 case "edit":
                     updateUser(request, response);
@@ -105,7 +105,16 @@ public class UserServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
-
+    private void insertUser1(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        User newUser = new User(username, email, password);
+        userDAO.insertLogin(newUser);
+//      ***
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/login.jsp");
+        dispatcher.forward(request, response);
+    }
     private void insertUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -114,7 +123,7 @@ public class UserServlet extends HttpServlet {
         User newUser = new User(username, email, password,img);
         userDAO.insert(newUser);
 //      ***
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/login.jsp");
         dispatcher.forward(request, response);
     }
 

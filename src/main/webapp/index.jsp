@@ -7,7 +7,7 @@
 
 </h1>
 <br/>
-<a href="users">SHOW LIST USER</a>
+<a href="UserServlet">SHOW LIST USER</a>
 
 </body>
 </html>
