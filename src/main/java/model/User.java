@@ -1,8 +1,36 @@
 package model;
 
+import java.util.List;
+
 public class User {
     private int id;
-    private String userName,email,passWord,img;
+    private String userName,email,passWord,img,firstname,lastname,address,telephoneNumber;
+    private  List<Blog> blogs;
+
+    public User(int id, String userName, String email, String passWord, String img, String firstname, String lastname, String address, String telephoneNumber, List<Blog> blogs) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.passWord = passWord;
+        this.img = img;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.telephoneNumber = telephoneNumber;
+        this.blogs = blogs;
+    }
+
+    public User(int id, String userName, String email, String passWord, String img, String firstname, String lastname, String address, String telephoneNumber) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.passWord = passWord;
+        this.img = img;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.telephoneNumber = telephoneNumber;
+    }
 
     public User(int id, String userName, String email, String passWord, String img) {
         this.id = id;
@@ -10,6 +38,7 @@ public class User {
         this.email = email;
         this.passWord = passWord;
         this.img = img;
+
     }
 
     public User(String userName, String email, String passWord, String img) {
@@ -66,6 +95,46 @@ public class User {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
     }
 
     @Override

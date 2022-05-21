@@ -37,8 +37,13 @@
 </head>
 <!-- body -->
 <body class="main-layout">
+<a href="/UserServlet?action=edit&id=${id} "><h1 style="color: #1e7e34">profile change</h1></a>
 <!-- loader  -->
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 24d7b2a78c49c5a8d8d17028d6d6ab590da8fed4
 <!-- end loader -->
 <!-- header -->
 <header>
@@ -92,6 +97,7 @@
 </header>
 <!-- end header -->
 <!-- revolution slider -->
+
 <div class="banner-slider">
     <div class="container-fluid">
         <div class="row">

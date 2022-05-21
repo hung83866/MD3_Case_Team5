@@ -80,7 +80,7 @@ public class UserServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userDAO.selectAll().get(id);
+        User existingUser = userDAO.selectAll().get(id-1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -133,11 +133,14 @@ public class UserServlet extends HttpServlet {
             if (username.equals(userList.get(i).getUserName())) {
                 if (password.equals(userList.get(i).getPassWord())) {
                     check = false;
+                    int id= i+1;
+                    request.setAttribute("id",id);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
                     dispatcher.forward(request, response);
                 }
             }
         }
+
         if (check) {
             String mes = "*sai thông tin đăng nhập!hãy thử lại!*";
             request.setAttribute("mes", mes);
@@ -211,9 +214,15 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String img = request.getParameter("img");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String address = request.getParameter("address");
+        String telephonenumber = request.getParameter("telephonenumber");
 
-        User book = new User(id, username, email, password, img);
-        userDAO.update(book);
+        User user = new User(id, username, email, password, img,firstname,lastname,address,telephonenumber);
+        userDAO.update(user);
+        String mes = "edit done! vào database xem đổi chưa";
+        request.setAttribute("mes",mes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
     }
