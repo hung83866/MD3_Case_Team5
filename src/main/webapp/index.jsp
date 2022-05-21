@@ -35,7 +35,7 @@
             ">
                     <div class="card-body p-5 shadow-5 text-center">
                         <h2 class="fw-bold mb-5">Sign up now</h2>
-                        <p>${mes}</p>
+                        <p style="color: red">${mes}</p>
                         <form method="post" action="/UserServlet">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row">
