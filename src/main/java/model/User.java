@@ -19,6 +19,12 @@ public class User {
         this.img = img;
     }
 
+    public User(String userName,String email,String passWord){
+        this.userName = userName;
+        this.email = email;
+        this.passWord = passWord;
+    }
+
     public User() {
     }
 
@@ -60,5 +66,16 @@ public class User {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", img='" + img + '\'' +
+                '}';
     }
 }
