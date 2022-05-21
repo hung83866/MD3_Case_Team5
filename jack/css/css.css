@@ -21,3 +21,29 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgb(217, 132, 250), rgb(143, 183, 244))
 }
+/*body{*/
+/*    margin: 0 auto;*/
+/*}*/
+.boxCenter{
+    width: 100%;
+    margin: 0px auto;
+}
+.center{
+    text-align: center;
+}
+.form_input{
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    border-radius:4px ;
+    width: 100%;
+}
+.button {
+    background-color: #58257b; /* màu của Quản trị mạng ^^ */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
