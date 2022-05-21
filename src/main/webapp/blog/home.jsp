@@ -38,9 +38,7 @@
 <!-- body -->
 <body class="main-layout">
 <!-- loader  -->
-<div class="loader_bg">
-    <div class="loader"><img src="images/0015.gif" alt="" /></div>
-</div>
+
 <!-- end loader -->
 <!-- header -->
 <header>
