@@ -133,11 +133,14 @@ public class UserServlet extends HttpServlet {
             if (username.equals(userList.get(i).getUserName())) {
                 if (password.equals(userList.get(i).getPassWord())) {
                     check = false;
+                    int id= i+1;
+                    request.setAttribute("id",id);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
                     dispatcher.forward(request, response);
                 }
             }
         }
+
         if (check) {
             String mes = "*sai thông tin đăng nhập!hãy thử lại!*";
             request.setAttribute("mes", mes);
