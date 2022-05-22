@@ -1,6 +1,8 @@
 package controller;
 
+import dao.blogDAO.BlogDAO;
 import dao.userDAO.UserDAO;
+import model.Blog;
 import model.User;
 
 import javax.servlet.*;
@@ -14,6 +16,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
+    private BlogDAO blogDAO;
 
     public void init() {
         userDAO = new UserDAO();
@@ -45,13 +48,30 @@ public class UserServlet extends HttpServlet {
                 case "profile":
                     showProfile(request, response);
                     break;
+                case "userlist":
+                    showUserList(request,response);
+                    break;
                 default:
-                    listUser(request, response);
+                    showBlogList(request, response);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void showBlogList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Blog> blogs= blogDAO.selectAll();
+        request.setAttribute("blogs",blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showUserList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<User> users= userDAO.selectAll();
+        request.setAttribute("users",users);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void showProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,12 +87,6 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> listUser = userDAO.selectAll();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
-    }
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/search.jsp");
@@ -226,7 +240,7 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String img = userDAO.selectAll().get(id-1).getImg();
+        String img = request.getParameter("img");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String address = request.getParameter("address");
@@ -236,7 +250,9 @@ public class UserServlet extends HttpServlet {
         userDAO.update(user);
         String mes = "edit done! vào database xem đổi chưa";
         request.setAttribute("mes",mes);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        User existingUser = userDAO.selectAll().get(id-1);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/profile.jsp");
+        request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
 

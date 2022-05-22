@@ -39,11 +39,7 @@
 <body class="main-layout">
 
 <!-- loader  -->
-<<<<<<< HEAD
 
-=======
-
->>>>>>> 24d7b2a78c49c5a8d8d17028d6d6ab590da8fed4
 <!-- end loader -->
 <!-- header -->
 <header>
@@ -63,7 +59,7 @@
                         <nav class="main-menu">
                             <ul class="menu-area-main">
                                 <li class="active">
-                                    <a href="index.html">MyBlog</a>
+                                    <a href="/UserServlet">MyBlog</a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=profile&id=${id} "><h1 style="color: #1e7e34">profile</h1></a>
