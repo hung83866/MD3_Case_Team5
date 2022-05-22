@@ -42,6 +42,9 @@ public class UserServlet extends HttpServlet {
                 case "logout":
                     logoutAccount(request, response);
                     break;
+                case "profile":
+                    showProfile(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -49,6 +52,14 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void showProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        User existingUser = userDAO.selectAll().get(id-1);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/profile.jsp");
+        request.setAttribute("user", existingUser);
+        dispatcher.forward(request, response);
     }
 
     private void logoutAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -126,7 +137,9 @@ public class UserServlet extends HttpServlet {
                 username.equals("Admin_Binh")&&password.equals("binhdz")||
                         username.equals("Admin_Thanh")&&password.equals("thanhdz")){
             check = false;
-            RequestDispatcher dispatcher = request.getRequestDispatcher("blog/admin.jsp");
+            List<User> users= userDAO.selectAll();
+            request.setAttribute("users",users);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
             dispatcher.forward(request, response);
         }
         for (int i = 0; i < userList.size(); i++) {
@@ -213,7 +226,7 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String img = request.getParameter("img");
+        String img = userDAO.selectAll().get(id-1).getImg();
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String address = request.getParameter("address");

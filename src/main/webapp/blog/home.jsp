@@ -37,7 +37,7 @@
 </head>
 <!-- body -->
 <body class="main-layout">
-<a href="/UserServlet?action=edit&id=${id} "><h1 style="color: #1e7e34">profile change</h1></a>
+
 <!-- loader  -->
 <<<<<<< HEAD
 
@@ -66,13 +66,7 @@
                                     <a href="index.html">MyBlog</a>
                                 </li>
                                 <li>
-                                    <a href="about.html">New Blog</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html">Edit Blog</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Delete</a>
+                                    <a href="/UserServlet?action=profile&id=${id} "><h1 style="color: #1e7e34">profile</h1></a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=logout">Log out</a>

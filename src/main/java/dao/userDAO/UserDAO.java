@@ -1,5 +1,7 @@
 package dao.userDAO;
 
+import dao.blogDAO.BlogDAO;
+import model.Blog;
 import model.User;
 
 import java.sql.Connection;
@@ -98,6 +100,7 @@ public class UserDAO implements IUserDAO{
 
     @Override
     public List<User> selectAll() {
+        BlogDAO blogDAO = new BlogDAO();
         List<User> users = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER);) {
@@ -109,7 +112,12 @@ public class UserDAO implements IUserDAO{
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String img = rs.getString("img");
-                users.add(new User(id, username, email, password,img));
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String address = rs.getString("address");
+                String telephonenumber = rs.getString("telephonenumber");
+                List<Blog> blogs = blogDAO.selectByIDuser(id);
+                users.add(new User(id, username, email, password,img,firstname,lastname,address,telephonenumber,blogs));
             }
         } catch (SQLException e) {
             printSQLException(e);

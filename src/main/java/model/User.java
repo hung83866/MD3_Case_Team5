@@ -145,6 +145,11 @@ public class User {
                 ", email='" + email + '\'' +
                 ", passWord='" + passWord + '\'' +
                 ", img='" + img + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", address='" + address + '\'' +
+                ", telephoneNumber='" + telephoneNumber + '\'' +
+                ", blogs=" + blogs +
                 '}';
     }
 }
