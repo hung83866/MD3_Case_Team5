@@ -1,5 +1,7 @@
 package dao.userDAO;
 
+import dao.blogDAO.BlogDAO;
+import model.Blog;
 import model.User;
 
 import java.sql.Connection;
@@ -19,6 +21,7 @@ public class UserDAO implements IUserDAO{
     private static final String DELETE_USER_SQL = "delete from user where id = ?;";
     private static final String UPDATE_USER_SQL = "update user set username = ?,email= ?,password= ?,img= ? where id = ?;";
     private static final String SEARCH_BY_NAME = "select id,username,email,password,img from user where username = ?;";
+    private static final String EDIT_USER_SQL = "update user set email =?,img =?, firstname =?, lastname =?, address= ?, telephoneNumber =? where id= ?";
 
     public UserDAO() {
     }
@@ -97,6 +100,7 @@ public class UserDAO implements IUserDAO{
 
     @Override
     public List<User> selectAll() {
+        BlogDAO blogDAO = new BlogDAO();
         List<User> users = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER);) {
@@ -108,7 +112,12 @@ public class UserDAO implements IUserDAO{
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String img = rs.getString("img");
-                users.add(new User(id, username, email, password,img));
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String address = rs.getString("address");
+                String telephonenumber = rs.getString("telephonenumber");
+                List<Blog> blogs = blogDAO.selectByIDuser(id);
+                users.add(new User(id, username, email, password,img,firstname,lastname,address,telephonenumber,blogs));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -129,6 +138,21 @@ public class UserDAO implements IUserDAO{
 
     @Override
     public boolean update(User user) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(EDIT_USER_SQL);) {
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getImg());
+            statement.setString(3, user.getFirstname());
+            statement.setString(4, user.getLastname());
+            statement.setString(5, user.getAddress());
+            statement.setString(6, user.getTelephoneNumber());
+            statement.setInt(7, user.getId());
+            rowUpdated = statement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    public boolean editUser(User user) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL);) {
             statement.setString(1, user.getUserName());

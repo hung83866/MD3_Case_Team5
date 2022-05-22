@@ -27,21 +27,25 @@
 
                                 <div class="form-outline mb-4">
                                     <input type="text" id="username" name="username" placeholder="User Name" class="form-control form-control-lg" />
+                                    <span style="color: red">${mes1}${mes3}</span>
                                     <!--                                    <label class="form-label" for="form3Example1cg">Your Name</label>-->
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="email" id="email" name="email" placeholder="Your Email" class="form-control form-control-lg" />
+                                    <span style="color: red">${mes2}${mes3}</span>
                                     <!--                                    <label class="form-label" for="form3Example3cg">Your Email</label>-->
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg" />
+                                    <span style="color: red">${mes3}</span>
                                     <!--                                    <label class="form-label" for="form3Example4cg">Password</label>-->
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cdg" placeholder="Repeat your password" class="form-control form-control-lg" />
+                                    <input type="password" id="repass" name="repass" placeholder="Repeat your password" class="form-control form-control-lg" />
+                                    <span style="color: red">${mes4}</span>
                                     <!--                                    <label class="form-label" for="form3Example4cdg">Repeat your password</label>-->
                                 </div>
                                 <div class="d-flex justify-content-center">

@@ -18,6 +18,7 @@ public class UserServlet extends HttpServlet {
     public void init() {
         userDAO = new UserDAO();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -41,6 +42,9 @@ public class UserServlet extends HttpServlet {
                 case "logout":
                     logoutAccount(request, response);
                     break;
+                case "profile":
+                    showProfile(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -48,6 +52,14 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void showProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        User existingUser = userDAO.selectAll().get(id-1);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/profile.jsp");
+        request.setAttribute("user", existingUser);
+        dispatcher.forward(request, response);
     }
 
     private void logoutAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -79,15 +91,15 @@ public class UserServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userDAO.selectAll().get(id);
+        User existingUser = userDAO.selectAll().get(id-1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
-            dispatcher.forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
@@ -121,18 +133,30 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         List<User> userList = userDAO.selectAll();
         boolean check = true;
+        if (username.equals("Admin_Hung")&&password.equals("hungdz")||
+                username.equals("Admin_Binh")&&password.equals("binhdz")||
+                        username.equals("Admin_Thanh")&&password.equals("thanhdz")){
+            check = false;
+            List<User> users= userDAO.selectAll();
+            request.setAttribute("users",users);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
+            dispatcher.forward(request, response);
+        }
         for (int i = 0; i < userList.size(); i++) {
-            if (username.equals(userList.get(i).getUserName())){
-                if (password.equals(userList.get(i).getPassWord())){
-                    check=false;
+            if (username.equals(userList.get(i).getUserName())) {
+                if (password.equals(userList.get(i).getPassWord())) {
+                    check = false;
+                    int id= i+1;
+                    request.setAttribute("id",id);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
                     dispatcher.forward(request, response);
                 }
             }
         }
-        if (check){
+
+        if (check) {
             String mes = "*sai thông tin đăng nhập!hãy thử lại!*";
-            request.setAttribute("mes",mes);
+            request.setAttribute("mes", mes);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         }
@@ -143,18 +167,54 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User newUser = new User(username, email, password);
-        userDAO.insertLogin(newUser);
-//      ***
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
+        String rePassword = request.getParameter("repass");
+        List<User> userList = userDAO.selectAll();
+        boolean check = true;
+        if (password.equals(rePassword)){
+        }else {
+            check = false;
+            String messs1 = "password incorrect!";
+            request.setAttribute("mes4", messs1);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+            dispatcher.forward(request, response);
+        }
+        if (username.equals("") || email.equals("") || password.equals("")) {
+            check = false;
+            String messs = " Not null! ";
+            request.setAttribute("mes3", messs);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+            dispatcher.forward(request, response);
+        }
+        for (int i = 0; i < userList.size(); i++) {
+            if (username.equals(userList.get(i).getUserName())) {
+                check = false;
+                String mes = " Used password! ";
+                request.setAttribute("mes1", mes);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+                dispatcher.forward(request, response);
+            }
+            if (email.equals(userList.get(i).getEmail())) {
+                check = false;
+                String mess = " Used Email! ";
+                request.setAttribute("mes2", mess);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
+        if (check) {
+            User newUser = new User(username, email, password);
+            userDAO.insertLogin(newUser);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
+        }
     }
+
     private void insertUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String img = request.getParameter("img");
-        User newUser = new User(username, email, password,img);
+        User newUser = new User(username, email, password, img);
         userDAO.insert(newUser);
 //      ***
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/login.jsp");
@@ -166,10 +226,16 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String img = request.getParameter("img");
+        String img = userDAO.selectAll().get(id-1).getImg();
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String address = request.getParameter("address");
+        String telephonenumber = request.getParameter("telephonenumber");
 
-        User book = new User(id, username, email, password,img);
-        userDAO.update(book);
+        User user = new User(id, username, email, password, img,firstname,lastname,address,telephonenumber);
+        userDAO.update(user);
+        String mes = "edit done! vào database xem đổi chưa";
+        request.setAttribute("mes",mes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
     }

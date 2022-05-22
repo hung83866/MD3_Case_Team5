@@ -37,10 +37,13 @@
 </head>
 <!-- body -->
 <body class="main-layout">
+
 <!-- loader  -->
-<div class="loader_bg">
-    <div class="loader"><img src="images/0015.gif" alt="" /></div>
-</div>
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> 24d7b2a78c49c5a8d8d17028d6d6ab590da8fed4
 <!-- end loader -->
 <!-- header -->
 <header>
@@ -63,13 +66,7 @@
                                     <a href="index.html">MyBlog</a>
                                 </li>
                                 <li>
-                                    <a href="about.html">New Blog</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html">Edit Blog</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Delete</a>
+                                    <a href="/UserServlet?action=profile&id=${id} "><h1 style="color: #1e7e34">profile</h1></a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=logout">Log out</a>
@@ -94,6 +91,7 @@
 </header>
 <!-- end header -->
 <!-- revolution slider -->
+
 <div class="banner-slider">
     <div class="container-fluid">
         <div class="row">

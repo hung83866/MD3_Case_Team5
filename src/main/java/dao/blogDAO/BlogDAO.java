@@ -16,7 +16,7 @@ public class BlogDAO implements IBlogDAO{
     private static final String DELETE_BLOGS_SQL = "delete from blog where id = ?;";
     private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where id = ?;";
     private static final String SEARCH_BY_NAME = "select title, date, content, img, description, role from blog where title = ?;";
-
+    private static final String SELECT_BY_IDUSER = "SELECT * BLOG GROUP BY IDUSER HAVING IDUSER = ?;";
     public BlogDAO() {
     }
 
@@ -90,6 +90,34 @@ public class BlogDAO implements IBlogDAO{
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BLOGS);) {
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String date = rs.getString(String.valueOf(new Date()));
+                String content = rs.getString("content");
+                String img = rs.getString("img");
+                String descripttion = rs.getString("descripttion");
+                int role = rs.getInt("role");
+                blogs.add(new Blog(id, title, date, content, img,descripttion,role));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return blogs;
+    }
+    public List<Blog> selectByIDuser(int iduser) {
+        List<Blog> blogs = new ArrayList<>();
+        // Step 1: Establishing a Connection
+        try (Connection connection = DBconnection.getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_IDUSER);) {
+            preparedStatement.setInt(1, iduser);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
