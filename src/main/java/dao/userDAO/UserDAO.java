@@ -116,8 +116,8 @@ public class UserDAO implements IUserDAO{
                 String lastname = rs.getString("lastname");
                 String address = rs.getString("address");
                 String telephonenumber = rs.getString("telephonenumber");
-                List<Blog> blogs = blogDAO.selectByIDuser(id);
-                users.add(new User(id, username, email, password,img,firstname,lastname,address,telephonenumber,blogs));
+//                List<Blog> blogs = blogDAO.selectByIDuser(id);
+                users.add(new User(id, username, email, password,img,firstname,lastname,address,telephonenumber));
             }
         } catch (SQLException e) {
             printSQLException(e);

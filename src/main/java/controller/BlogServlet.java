@@ -59,7 +59,7 @@ public class BlogServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/blogCreate.jsp");
         dispatcher.forward(request, response);
     }
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -112,12 +112,12 @@ public class BlogServlet extends HttpServlet {
         String title = request.getParameter("title");
         String date = request.getParameter("date");
         String content = request.getParameter("content");
-        String img = request.getParameter("img");
+//        String img = request.getParameter("img");
         String description = request.getParameter("description");
-        int role = Integer.parseInt(request.getParameter("role"));
-        Blog newblog= new Blog(title, date, content, img,description,role);
+//        int role = Integer.parseInt(request.getParameter("role"));
+        Blog newblog= new Blog(title, date, content, description);
         blogDAO.insert(newblog);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
         dispatcher.forward(request, response);
     }
 
