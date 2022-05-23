@@ -16,7 +16,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
-    private BlogDAO blogDAO;
+    private BlogDAO blogDAO = new BlogDAO();
 
     public void init() {
         userDAO = new UserDAO();
@@ -61,6 +61,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showBlogList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        int id = Integer.parseInt(request.getParameter("id"));
         List<Blog> blogs= blogDAO.selectAll();
         request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");

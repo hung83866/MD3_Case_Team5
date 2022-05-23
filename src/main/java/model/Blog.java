@@ -106,4 +106,18 @@ public class Blog {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", date='" + date + '\'' +
+                ", content='" + content + '\'' +
+                ", img='" + img + '\'' +
+                ", description='" + description + '\'' +
+                ", role=" + role +
+                ", user=" + user +
+                '}';
+    }
 }
