@@ -8,6 +8,7 @@ public class Blog {
     private String date;
     private String content,img,description;
     private int role;
+    private User user;
 
     public Blog(int id, String title, String date, String content, String img, String description, int role) {
         this.id = id;
@@ -26,6 +27,17 @@ public class Blog {
         this.img = img;
         this.description = description;
         this.role = role;
+    }
+
+    public Blog(int id, String title, String date, String content, String img, String description, int role, User user) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+        this.content = content;
+        this.img = img;
+        this.description = description;
+        this.role = role;
+        this.user = user;
     }
 
     public Blog() {
@@ -85,5 +97,13 @@ public class Blog {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

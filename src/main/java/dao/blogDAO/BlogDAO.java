@@ -1,7 +1,9 @@
 package dao.blogDAO;
 
 import config.DBconnection;
+import dao.userDAO.UserDAO;
 import model.Blog;
+import model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,6 +86,7 @@ public class BlogDAO implements IBlogDAO{
 
     @Override
     public List<Blog> selectAll() {
+        UserDAO userDAO = new UserDAO();
         List<Blog> blogs = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBconnection.getConnection();
@@ -103,7 +106,9 @@ public class BlogDAO implements IBlogDAO{
                 String img = rs.getString("img");
                 String descripttion = rs.getString("descripttion");
                 int role = rs.getInt("role");
-                blogs.add(new Blog(id, title, date, content, img,descripttion,role));
+                int iduser = rs.getInt("iduser");
+                User user = userDAO.select(iduser);
+                blogs.add(new Blog(id, title, date, content, img,descripttion,role,user));
             }
         } catch (SQLException e) {
             printSQLException(e);

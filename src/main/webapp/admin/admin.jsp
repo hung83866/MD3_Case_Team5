@@ -63,13 +63,13 @@
                                 <!--                                 <a href="index.html">ADMIN</a>-->
                                 <!--                              </li>-->
                                 <li>
-                                    <a href="about.html">USER</a>
+                                    <a href="/UserServlet?action=userlist">USER</a>
                                 </li>
                                 <li>
                                     <a href="blog.html">BLOG</a>
                                 </li>
                                 <li>
-                                    <a href="logOut.html">LOG OUT</a>
+                                    <a href="/UserServlet?action=loguot">LOG OUT</a>
                                 </li>
                                 <li>
                                     <form action="/UserServlet?action=search">
@@ -87,49 +87,8 @@
             </div>
         </div>
     </div>
-    <!-- end header inner -->
 </header>
-<!-- end header -->
-<!-- revolution slider -->
-<!--      <div class="banner-slider">-->
-<!--         <div class="container-fluid">-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-7">-->
-<!--                  <div id="slider_main" class="carousel slide" data-ride="carousel">-->
-<!--                     &lt;!&ndash; The slideshow &ndash;&gt;-->
-<!--                     <div class="carousel-inner">-->
-<!--                        <div class="carousel-item active">-->
-<!--                           <img src="images/slider_1.png" alt="#" />-->
-<!--                        </div>-->
-<!--                        <div class="carousel-item">-->
-<!--                           <img src="images/slider_1.png" alt="#" />-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                     &lt;!&ndash; Left and right controls &ndash;&gt;-->
-<!--                     <a class="carousel-control-prev" href="#slider_main" data-slide="prev">-->
-<!--                     <i class="fa fa-angle-left" aria-hidden="true"></i>-->
-<!--                     </a>-->
-<!--                     <a class="carousel-control-next" href="#slider_main" data-slide="next">-->
-<!--                     <i class="fa fa-angle-right" aria-hidden="true"></i>-->
-<!--                     </a>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--               <div class="col-md-5">-->
-<!--                  <div class="full slider_cont_section">-->
-<!--                     <h4>More Featured in</h4>-->
-<!--                     <h3>Jack Blogger</h3>-->
-<!--                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look</p>-->
-<!--                     <div class="button_section">-->
-<!--                        <a href="about.html">Read More</a>-->
-<!--                        <a href="contact.html">Contact Us</a>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--         </div>-->
-<!--      </div>-->
-<!-- end revolution slider -->
-<!-- section -->
+
 <div style="background: #9fcdff" class="section layout_padding">
     <div class="container">
         <div class="row">
@@ -147,10 +106,10 @@
             <div class="col-md-6">
                 <div class="full blog_cont">
                     <h3 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h3>
-                    <h5>${users.userName}</h5>
-                    <p>${users.email}</p>
-                    <p>${users.address}</p>
-                    <p>${users.telephoneNumber}</p>
+                    <h5>username : ${users.userName}</h5>
+                    <p>emai : ${users.email}</p>
+                    <p>address : ${users.address}</p>
+                    <p>phone : ${users.telephoneNumber}</p>
                     <div class="button_section">
                         <a STYLE="background: #1e7e34" href="about.html">VIEW</a>
                         <a style="background: #003eff" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>

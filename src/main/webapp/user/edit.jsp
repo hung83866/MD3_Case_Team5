@@ -77,11 +77,14 @@
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" src="${user.img}" alt="">
                     <!-- Profile picture help block-->
-                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <div class="small font-italic text-muted mb-4"><h4>${user.firstname} ${user.lastname}</h4></div>
+
+                    <div class="small font-italic text-muted mb-4">${user.userName}</div>
                     <!-- Profile picture upload button-->
-                    <button class="btn btn-primary" >Upload new image</button>
+                    <a href="https://google.com/" target="_blank">CHANGE</a>
+
                 </div>
             </div>
         </div>
@@ -93,6 +96,10 @@
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
                     <form method="post">>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="img">Image</label>
+                            <input class="form-control" id="img"  name="img" placeholder="image" value="${user.img}">
+                        </div>
                         <div class="mb-3">
                             <label class="small mb-1" for="inputEmail">Email</label>
                             <input class="form-control" id="inputEmail" type="email" name="email" placeholder="Enter your Email" value="${user.email}">
