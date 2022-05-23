@@ -60,20 +60,17 @@
                     <div class="limit-box">
                         <nav class="main-menu">
                             <ul class="menu-area-main">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="blog.html">Blog</a>
+                                <li class="active">
+                                    <a href="/UserServlet?action=n&id=${id}">home</a>
                                 </li>
                                 <li class="active">
-                                    <a href="createBlog.html">Contact us</a>
+                                    <a href="/UserServlet?action=myblog&id=${id}">MyBlog</a>
                                 </li>
                                 <li>
-                                    <a href="logOut.html">Log out</a>
+                                    <a href="/UserServlet?action=profile&id=${id}">profile</a>
+                                </li>
+                                <li>
+                                    <a href="/UserServlet?action=logout">Log out</a>
                                 </li>
                                 <li>
                                     <form>
@@ -81,7 +78,7 @@
                                     </form>
                                 </li>
                                 <li>
-                                    <a href="#"><img src="images/search_icon.png" alt="#" /></a>
+                                    <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#" /></a>
                                 </li>
                             </ul>
                         </nav>

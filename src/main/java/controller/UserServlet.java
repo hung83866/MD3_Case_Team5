@@ -51,8 +51,11 @@ public class UserServlet extends HttpServlet {
                 case "userlist":
                     showUserList(request,response);
                     break;
+                case "myblog":
+                    showMyBlogList(request, response);
+                    break;
                 default:
-                    showBlogList(request, response);
+                    showListBlog(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -60,11 +63,21 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void showBlogList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
+    private void showListBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         List<Blog> blogs= blogDAO.selectAll();
         request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showMyBlogList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        List<Blog> blogs= blogDAO.selectByIDuser(id);
+        request.setAttribute("blogs",blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -77,6 +90,7 @@ public class UserServlet extends HttpServlet {
 
     private void showProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         User existingUser = userDAO.selectAll().get(id-1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/profile.jsp");
         request.setAttribute("user", existingUser);
@@ -97,7 +111,7 @@ public class UserServlet extends HttpServlet {
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         userDAO.delete(id);
-
+        request.setAttribute("id",id);
         List<User> listUser = userDAO.selectAll();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
@@ -106,6 +120,7 @@ public class UserServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         User existingUser = userDAO.selectAll().get(id-1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
@@ -163,6 +178,8 @@ public class UserServlet extends HttpServlet {
                     check = false;
                     int id= i+1;
                     request.setAttribute("id",id);
+                    List<Blog> blogs= blogDAO.selectAll();
+                    request.setAttribute("blogs",blogs);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
                     dispatcher.forward(request, response);
                 }

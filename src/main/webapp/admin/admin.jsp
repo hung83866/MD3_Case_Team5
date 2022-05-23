@@ -89,7 +89,7 @@
     </div>
 </header>
 
-<div style="background-image: url('/images/img1.jpg')" class="section layout_padding">
+<div style="background-image: url('/images/img4.webp')" class="section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -104,13 +104,13 @@
                 <img style="height: 200px;border-radius: 50%" src=${users.img} alt="#"/>
             </div>
             <div class="col-md-6">
-                <div class="full blog_cont">
-                    <h3 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h3>
-                    <h4>username : ${users.userName}</h4>
+                <div class=" full blog_cont">
+                    <h4 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h4>
+                    <h2>username : ${users.userName}</h2>
 <%--                    <p>email : ${users.email}</p>--%>
 <%--                    <p>address : ${users.address}</p>--%>
 <%--                    <p>phone : ${users.telephoneNumber}</p>--%>
-                    <div class="button_section">
+                    <div class=" button_section">
                         <a STYLE="background: #184091;border-radius: 5%" href="about.html">VIEW</a>
                         <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
                     </div>
@@ -125,47 +125,23 @@
 <footer>
     <div class="container">
         <div class="row">
+            <div class="col-lg-2 col-md-6">
+                <div class="footer_links">
+                    <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#" /></a>
+                </div>
+            </div>
             <div class="col-lg-4 col-md-6">
-                <a href="#"><img src="images/footer_logo.png" alt="#"/></a>
                 <ul class="contact_information">
-                    <li><span><img src="images/location_icon.png" alt="#"/></span><span class="text_cont">London 145<br>United Kingdom</span>
-                    </li>
-                    <li><span><img src="images/phone_icon.png" alt="#"/></span><span class="text_cont">987 654 3210<br>987 654 3210</span>
-                    </li>
-                    <li><span><img src="images/mail_icon.png" alt="#"/></span><span class="text_cont">demo@gmail.com<br>support@gmail.com</span>
-                    </li>
+                    <li><span><img src="images/location_icon.png" alt="#" /></span><span class="text_cont">CodeGym<br>Ha Noi City</span></li>
+                    <li><span><img src="images/phone_icon.png" alt="#" /></span><span class="text_cont">0814 229 299<br>0888 886 688</span></li>
+                    <li><span><img src="images/mail_icon.png" alt="#" /></span><span class="text_cont">hungdz@codegym.com<br>binhdz@codegym.com</span></li>
                 </ul>
                 <ul class="social_icon">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://www.facebook.com/buihaibinh.94.bui"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                 </ul>
-            </div>
-            <div class="col-lg-2 col-md-6">
-                <div class="footer_links">
-                    <h3>Quick link</h3>
-                    <ul>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Home</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Features</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Evens</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Markrting</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Blog</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Testimonial</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="footer_links">
-                    <h3>Instagram</h3>
-                    <ol>
-                        <li><img class="img-responsive" src="images/footer_blog.png" alt="#"/></li>
-                        <li><img class="img-responsive" src="images/footer_blog.png" alt="#"/></li>
-                        <li><img class="img-responsive" src="images/footer_blog.png" alt="#"/></li>
-                        <li><img class="img-responsive" src="images/footer_blog.png" alt="#"/></li>
-                    </ol>
-                </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer_links">
@@ -173,13 +149,13 @@
                     <form action="index.html">
                         <fieldset>
                             <div class="field">
-                                <input type="text" name="name" placeholder="Your Name" required=""/>
+                                <input type="text" name="name" placeholder="Your Name" required="" />
                             </div>
                             <div class="field">
-                                <input type="email" name="email" placeholder="Email" required=""/>
+                                <input type="email" name="email" placeholder="Email" required="" />
                             </div>
                             <div class="field">
-                                <input type="text" name="subject" placeholder="Subject" required=""/>
+                                <input type="text" name="subject" placeholder="Subject" required="" />
                             </div>
                             <div class="field">
                                 <textarea placeholder="Message"></textarea>
@@ -196,15 +172,7 @@
         </div>
     </div>
 </footer>
-<div class="cpy">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p>Copyright © 2019 Design by <a href="https://html.design/">Free Html Templates</a></p>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- end footer -->
 <!-- Javascript files-->
 <script src="js/jquery.min.js"></script>

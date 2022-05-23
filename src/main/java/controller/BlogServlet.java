@@ -53,7 +53,7 @@ public class BlogServlet extends HttpServlet {
         List<Blog> blogs = blogDAO.selectAll();
         System.out.println(blogs);
         request.setAttribute("listAll", blogs);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("myBlog.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -117,7 +117,7 @@ public class BlogServlet extends HttpServlet {
 //        int role = Integer.parseInt(request.getParameter("role"));
         Blog newblog= new Blog(title, date, content, description);
         blogDAO.insert(newblog);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);
     }
 
