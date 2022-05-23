@@ -52,9 +52,15 @@ public class BlogServlet extends HttpServlet {
         }
     }
 
-    private void viewBlog(HttpServletRequest request, HttpServletResponse response) {
+    private void viewBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
+        Blog existingBlog = blogDAO.select(id);
+        System.out.println(existingBlog);
+        request.setAttribute("view", existingBlog);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/view.jsp");
+        dispatcher.forward(request, response);
+
     }
 
     private void listBlog(HttpServletRequest request, HttpServletResponse response)
