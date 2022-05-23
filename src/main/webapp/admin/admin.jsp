@@ -66,7 +66,7 @@
                                     <a href="/UserServlet?action=userlist">USER</a>
                                 </li>
                                 <li>
-                                    <a href="blog.html">BLOG</a>
+                                    <a href="/UserServlet">BLOG</a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=loguot">LOG OUT</a>
@@ -111,7 +111,7 @@
                     <p>address : ${users.address}</p>
                     <p>phone : ${users.telephoneNumber}</p>
                     <div class="button_section">
-                        <a STYLE="background: #1e7e34" href="about.html">VIEW</a>
+                        <a STYLE="background: #1e7e34" href="/UserServlet?action=myblog&id=${users.id}">VIEW</a>
                         <a style="background: #003eff" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
                     </div>
                 </div>
