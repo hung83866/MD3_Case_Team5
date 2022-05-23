@@ -89,7 +89,7 @@
     </div>
 </header>
 
-<div style="background: #9fcdff" class="section layout_padding">
+<div style="background-image: url('/images/img1.jpg')" class="section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -99,191 +99,29 @@
             </div>
         </div>
         <c:forEach items="${users}" var="users">
-        <div style="background: #9de2ff" class="row">
+        <div style="background-image: url('/images/im3.webp')" class="row">
             <div class="col-md-6">
-                <img style="height: 400px;border-radius: 50%" src=${users.img} alt="#"/>
+                <img style="height: 200px;border-radius: 50%" src=${users.img} alt="#"/>
             </div>
             <div class="col-md-6">
                 <div class="full blog_cont">
                     <h3 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h3>
-                    <h5>username : ${users.userName}</h5>
-                    <p>emai : ${users.email}</p>
-                    <p>address : ${users.address}</p>
-                    <p>phone : ${users.telephoneNumber}</p>
+                    <h4>username : ${users.userName}</h4>
+<%--                    <p>email : ${users.email}</p>--%>
+<%--                    <p>address : ${users.address}</p>--%>
+<%--                    <p>phone : ${users.telephoneNumber}</p>--%>
                     <div class="button_section">
-                        <a STYLE="background: #1e7e34" href="about.html">VIEW</a>
-                        <a style="background: #003eff" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
+                        <a STYLE="background: #184091;border-radius: 5%" href="about.html">VIEW</a>
+                        <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
                     </div>
                 </div>
             </div>
         </div>
+            <br><br><br>
         </c:forEach>
-
-        <!--            <div class="row margin_top_30">-->
-        <!--               <div class="col-md-6">-->
-        <!--                  <img src="images/blog2.png" alt="#" />-->
-        <!--               </div>-->
-        <!--               <div class="col-md-6">-->
-        <!--                  <div class="full blog_cont">-->
-        <!--                     <h4>What 3 years of android taught me the hard way</h4>-->
-        <!--                     <h5>MAY 19 2019  5 READ</h5>-->
-        <!--                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>-->
-        <!--                  </div>-->
-        <!--               </div>-->
-        <!--            </div>-->
-        <!--            <div class="row margin_top_30">-->
-        <!--               <div class="col-md-12">-->
-        <!--                  <div class="button_section full center margin_top_30">-->
-        <!--                     <a style="margin:0;" href="about.html">Read More</a>-->
-        <!--                  </div>-->
-        <!--               </div>-->
-        <!--            </div>-->
     </div>
 </div>
-<!-- end section -->
-<!-- section -->
-<!--      <div class="section layout_padding dark_bg">-->
-<!--         <div class="container">-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-12">-->
-<!--                  <div class="heading">-->
-<!--                     <h3>Marketing</h3>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-6">-->
-<!--                  <img src="images/marketing_img.png" alt="#" />-->
-<!--               </div>-->
-<!--               <div class="col-md-6">-->
-<!--                  <div class="full blog_cont">-->
-<!--                     <h3 class="white_font">Where can I get some</h3>-->
-<!--                     <h5 class="grey_font">March 19 2019 5 READ</h5>-->
-<!--                     <p class="white_font">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined g to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator..</p>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--         </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; end section &ndash;&gt;-->
-<!--      &lt;!&ndash; section &ndash;&gt;-->
-<!--      <section class="layout_padding">-->
-<!--         <div class="container">-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-12">-->
-<!--                  <div class="heading" style="padding-left: 15px;padding-right: 15px;">-->
-<!--                     <h4 style="border-bottom: solid #333 1px;">Comments / 2</h4>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-12">-->
-<!--                  <div class="full comment_blog_line">-->
-<!--                     <div class="row">-->
-<!--                        <div class="col-md-1">-->
-<!--                           <img src="images/c_1.png" alt="#" />-->
-<!--                        </div>-->
-<!--                        <div class="col-md-9">-->
-<!--                           <div class="full contact_text">-->
-<!--                              <h3>Veniam</h3>-->
-<!--                              <h4>Posted on Jan 10 / 2017 at 06:53 am</h4>-->
-<!--                              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet -->
-<!--                                 dolore magna aliquam erat volutpat.-->
-<!--                              </p>-->
-<!--                           </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-2">-->
-<!--                           <a class="reply_bt" href="#">Reply</a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--                  <div class="full comment_blog_line">-->
-<!--                     <div class="row">-->
-<!--                        <div class="col-md-1">-->
-<!--                           <img src="images/c_2.png" alt="#" />-->
-<!--                        </div>-->
-<!--                        <div class="col-md-9">-->
-<!--                           <div class="full contact_text">-->
-<!--                              <h3>Jack</h3>-->
-<!--                              <h4>Posted on Jan 10 / 2017 at 06:53 am</h4>-->
-<!--                              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet -->
-<!--                                 dolore magna aliquam erat volutpat.-->
-<!--                              </p>-->
-<!--                           </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-2">-->
-<!--                           <a class="reply_bt" href="#">Reply</a>-->
-<!--                        </div>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="row margin_top_30">-->
-<!--               <div class="col-md-12 margin_top_30">-->
-<!--                  <div class="heading" style="padding-left: 15px;padding-right: 15px;">-->
-<!--                     <h4>Post : Your Comment</h4>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-12">-->
-<!--                  <div class="full comment_form">-->
-<!--                     <form action="index.html">-->
-<!--                        <fieldset>-->
-<!--                           <div class="col-md-12">-->
-<!--                              <div class="row">-->
-<!--                                 <div class="col-md-6">-->
-<!--                                    <input type="text" name="name" placeholder="Name" required="#" />-->
-<!--                                    <input type="email" name="email" placeholder="Email" required="#" />-->
-<!--                                 </div>-->
-<!--                                 <div class="col-md-6">-->
-<!--                                    <textarea placeholder="Comment"></textarea>-->
-<!--                                 </div>-->
-<!--                              </div>-->
-<!--                              <div class="row margin_top_30">-->
-<!--                                 <div class="col-md-12">-->
-<!--                                    <div class="center">-->
-<!--                                       <button>Send</button>-->
-<!--                                    </div>-->
-<!--                                 </div>-->
-<!--                              </div>-->
-<!--                           </div>-->
-<!--                        </fieldset>-->
-<!--                     </form>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--         </div>-->
-<!--      </section>-->
-<!--      &lt;!&ndash; end section &ndash;&gt;-->
-<!--      &lt;!&ndash; section &ndash;&gt; -->
-<!--      <div class="section layout_padding blog_blue_bg light_silver">-->
-<!--         <div class="container">-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-8 offset-md-2">-->
-<!--                  <div class="heading">-->
-<!--                     <h3>Blog</h3>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--               <div class="col-md-8 offset-md-2">-->
-<!--                  <div class="full">-->
-<!--                     <div class="big_blog">-->
-<!--                        <img class="img-responsive" src="images/blog_1.png" alt="#" />-->
-<!--                     </div>-->
-<!--                     <div class="blog_cont_2">-->
-<!--                        <h3>Why do we use it</h3>-->
-<!--                        <p class="sublittle">March 19 2019  5 READ</p>-->
-<!--                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters as opposed to using Content here content here making..</p>-->
-<!--                     </div>-->
-<!--                  </div>-->
-<!--               </div>-->
-<!--            </div>-->
-<!--         </div>-->
-<!--      </div>-->
-<!-- end section -->
-<!-- footer -->
+
 <footer>
     <div class="container">
         <div class="row">
