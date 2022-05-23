@@ -22,6 +22,10 @@ public class BlogDAO implements IBlogDAO{
     public BlogDAO() {
     }
 
+    public static void main(String[] args) {
+        BlogDAO blogDAO = new BlogDAO();
+        System.out.println(blogDAO.selectAll());
+    }
     @Override
     public void insert(Blog blog) throws SQLException {
         System.out.println(INSERT_BLOG_SQL);
@@ -101,10 +105,10 @@ public class BlogDAO implements IBlogDAO{
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
-                String date = rs.getString(String.valueOf(new Date()));
+                String date = rs.getString("date");
                 String content = rs.getString("content");
                 String img = rs.getString("img");
-                String descripttion = rs.getString("descripttion");
+                String descripttion = rs.getString("description");
                 int role = rs.getInt("role");
                 int iduser = rs.getInt("iduser");
                 User user = userDAO.select(iduser);

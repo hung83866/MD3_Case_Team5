@@ -113,7 +113,7 @@ public class Blog {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
-                ", content='" + content + '\'' +
+//                ", content='" + content + '\'' +
                 ", img='" + img + '\'' +
                 ", description='" + description + '\'' +
                 ", role=" + role +
