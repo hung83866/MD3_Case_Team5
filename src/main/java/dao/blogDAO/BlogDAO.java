@@ -18,13 +18,13 @@ public class BlogDAO implements IBlogDAO{
     private static final String DELETE_BLOGS_SQL = "delete from blog where id = ?;";
     private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where id = ?;";
     private static final String SEARCH_BY_NAME = "select title, date, content, img, description, role from blog where title = ?;";
-    private static final String SELECT_BY_IDUSER = "SELECT * BLOG GROUP BY IDUSER HAVING IDUSER = ?;";
+    private static final String SELECT_BY_IDUSER = "SELECT * from BLOG GROUP BY IDUSER HAVING IDUSER = ?;";
     public BlogDAO() {
     }
 
     public static void main(String[] args) {
         BlogDAO blogDAO = new BlogDAO();
-        System.out.println(blogDAO.selectAll());
+        System.out.println(blogDAO.selectByIDuser(1));
     }
     @Override
     public void insert(Blog blog) throws SQLException {
@@ -120,6 +120,7 @@ public class BlogDAO implements IBlogDAO{
         return blogs;
     }
     public List<Blog> selectByIDuser(int iduser) {
+        UserDAO userDAO = new UserDAO();
         List<Blog> blogs = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBconnection.getConnection();
@@ -135,12 +136,13 @@ public class BlogDAO implements IBlogDAO{
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
-                String date = rs.getString(String.valueOf(new Date()));
+                String date = rs.getString("date");
                 String content = rs.getString("content");
                 String img = rs.getString("img");
-                String descripttion = rs.getString("descripttion");
+                String descripttion = rs.getString("description");
                 int role = rs.getInt("role");
-                blogs.add(new Blog(id, title, date, content, img,descripttion,role));
+                User user = userDAO.select(iduser);
+                blogs.add(new Blog(id, title, date, content, img,descripttion,role,user));
             }
         } catch (SQLException e) {
             printSQLException(e);

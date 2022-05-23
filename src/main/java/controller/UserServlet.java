@@ -61,8 +61,8 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showBlogList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-        List<Blog> blogs= blogDAO.selectAll();
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Blog> blogs= blogDAO.selectByIDuser(id);
         request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
         dispatcher.forward(request, response);
