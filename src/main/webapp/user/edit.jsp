@@ -154,19 +154,20 @@
 
                     <div class="small font-italic text-muted mb-4">${user.userName}</div>
                     <!-- Profile picture upload button-->
-                    <a href="https://google.com/" target="_blank">CHANGE</a>
+                    <a href="https://google.com/" target="_blank">Avatar update</a>
+                    <a href="/UserServlet?action=newpass&id=${user.id}">Password update</a>
 
                 </div>
             </div>
         </div>
-<h2 style="color:red;">${mes}</h2>
         <form method="post"></form>
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
-                    <form method="post">>
+                    <form method="post">
+                        <h2 style="color:red;">${mes}</h2>
                         <div class="mb-3">
                             <label class="small mb-1" for="img">Image</label>
                             <input class="form-control" id="img"  name="img" placeholder="image" value="${user.img}">

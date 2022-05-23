@@ -50,7 +50,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"> <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+                        <div class="logo"> <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
                     </div>
                 </div>
             </div>
@@ -89,14 +89,15 @@
     </div>
     <!-- end header inner -->
 </header>
-<a href="/BlogServlet?action=create&id=${id}"><h1>new blog</h1></a>
-
+<div class="button_section">
+    <a STYLE=" margin-top:20px;float : right; background: #abdde5" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>
+</div>
 <div class="section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h3> Blog <span class="orange_color">List</span></h3>
+                    <h3> My <span class="orange_color">Blog</span></h3>
                 </div>
             </div>
         </div>
@@ -112,12 +113,14 @@
 <%--                    <p>${blogs.role}</p>--%>
                     <div class="button_section">
                         <a STYLE="background: #1e7e34" href="/BlogServlet?action=view&id=${id}">VIEW</a>
-                        <a STYLE="background: #117a8b" href="/BlogServlet?action=edit&id=${id}">EDIT</a>
+                        <a STYLE="background: #117a8b" href="/BlogServlet?action=edit1&id=${id}">EDIT</a>
                         <a STYLE="background: #1d2124 "  href="/BlogServlet?action=delete&id=${id}">DELETE</a>
                     </div>
                 </div>
             </div>
         </div>
+            <br>
+            <br>
         </c:forEach>
     </div>
 </div>

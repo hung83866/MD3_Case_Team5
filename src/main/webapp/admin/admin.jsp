@@ -89,7 +89,7 @@
     </div>
 </header>
 
-<div style="background: #9fcdff" class="section layout_padding">
+<div style="background-image: url('/images/img4.webp')" class="section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -99,24 +99,24 @@
             </div>
         </div>
         <c:forEach items="${users}" var="users">
-        <div style="background: #9de2ff" class="row">
-            <div class="col-md-6">
-                <img style="height: 400px;border-radius: 50%" src=${users.img} alt="#"/>
-            </div>
-            <div class="col-md-6">
-                <div class="full blog_cont">
-                    <h3 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h3>
-                    <h5>username : ${users.userName}</h5>
-                    <p>emai : ${users.email}</p>
-                    <p>address : ${users.address}</p>
-                    <p>phone : ${users.telephoneNumber}</p>
-                    <div class="button_section">
-                        <a STYLE="background: #1e7e34" href="/UserServlet?action=myblog&id=${users.id}">VIEW</a>
-                        <a style="background: #003eff" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
+            <div style="background-image: url('/images/im3.webp')" class="row">
+                <div class="col-md-6">
+                    <img style="height: 200px;border-radius: 50%" src=${users.img} alt="#"/>
+                </div>
+                <div class="col-md-6">
+                    <div class=" full blog_cont">
+                        <h4 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h4>
+                        <h2>username : ${users.userName}</h2>
+                        <div class=" button_section">
+                            <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog&id=${users.id}">VIEW</a>
+                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <br>
+            <br>
+            <br>
         </c:forEach>
     </div>
 </div>

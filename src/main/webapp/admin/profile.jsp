@@ -14,7 +14,7 @@
 </head>
 <body>
 <center>
-<section class="vh-100" style="background-color: #9de2ff;">
+<section class="vh-100" style="background-image: url('/images/1633045291_883_Background-dep-don-gian-lam-hinh-nen-hoac-thiet-ke.jpg');">
     <div  class="container py-5 h-100">
         <div  class="row d-flex justify-content-center align-items-center h-100">
             <div  class="col col-md-9 col-lg-7 col-xl-5">
@@ -44,9 +44,9 @@
                                         <p class="mb-0">${user.email}</p>
                                     </div>
                                 </div>
-                                <div  class="d-flex pt-1">
-                                        <a href="/UserServlet?action=edit&id=${user.id}" style="width: 150px" class="btn btn-outline-primary me-1 flex-grow-1">Edit</a>
-                                        <a href="/UserServlet?action=delete&id=${user.id}" style="width: 150px" class="btn btn-primary flex-grow-1">Delete</a>
+                                <div  class="">
+                                        <a href="/UserServlet?action=edit1&id=${user.id}" style="width: 150px" class="btn btn-outline-primary me-1 flex-grow-1">Edit</a>
+                                        <a href="/UserServlet?action=delete&id=${user.id}" style="width: 150px" class="btn btn-outline-primary me-1 flex-grow-1">Delete</a>
                                 </div >
                             </div>
                         </div>
