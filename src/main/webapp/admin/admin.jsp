@@ -48,7 +48,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"><a href="index.html"><img
+                        <div class="logo"><a href="home.jsp"><img
                                 src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png"
                                 style="height: 100px;width:100px;border-radius: 12%" alt="#"></a></div>
                     </div>

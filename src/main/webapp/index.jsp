@@ -37,14 +37,7 @@
                         <h2 class="fw-bold mb-5">Sign up now</h2>
                         <p style="color: red">${mes}</p>
                         <form method="post" action="/UserServlet">
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row">
-                                <!--                                <div class="col-md-6 mb-4">-->
-                                <!--                                    <div class="form-outline">-->
-                                <!--                                        <input type="text" id="form3Example1" placeholder="First name" class="form-control" />-->
-                                <!--                                        <label class="form-label" for="form3Example1">First name</label>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                                 <div class="form-outline mb-4">
                                     <div class="form-outline">
                                         <input type="text" id="username" name="username" placeholder="User Name" class="form-control"/>
@@ -52,56 +45,23 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Email input -->
-<%--                            <div class="form-outline mb-4">--%>
-<%--                                <input type="email" id="email" name="email" placeholder="Email address" class="form-control" />--%>
-<%--                                <!--                                <label class="form-label" for="form3Example3">Email address</label>-->--%>
-<%--                            </div>--%>
-
-
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <input type="password" id="password" name="password" placeholder="Password" class="form-control" height="100" />
-                                <!--                                <label class="form-label" for="form3Example4">Password</label>-->
                             </div>
 
-                            <!-- Checkbox -->
                             <div class="form-check d-flex justify-content-center mb-4">
                                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
                                 <label class="form-check-label" for="form2Example33">
                                     Subscribe to our newsletter
                                 </label>
                             </div>
-
-
-                            <!-- Submit button -->
                             <form method="post" action="/UserServlet">
                                 <button class="btn btn-success btn-block btn-lg gradient-custom-4 text-body ">
                                     Sign up
                                 </button>
                             </form>
-
-
-
-                            <!-- Register buttons -->
                             <div class="text-center">
-                                <!--                                <p>or sign up with:</p>-->
-                                <!--                                <button type="button" class="btn btn-link btn-floating mx-1">-->
-                                <!--                                    <i class="fab fa-facebook-f"></i>-->
-                                <!--                                </button>-->
-
-                                <!--                                <button type="button" class="btn btn-link btn-floating mx-1">-->
-                                <!--                                    <i class="fab fa-google"></i>-->
-                                <!--                                </button>-->
-
-                                <!--                                <button type="button" class="btn btn-link btn-floating mx-1">-->
-                                <!--                                    <i class="fab fa-twitter"></i>-->
-                                <!--                                </button>-->
-
-                                <!--                                <button type="button" class="btn btn-link btn-floating mx-1">-->
-                                <!--                                    <i class="fab fa-github"></i>-->
-                                <!--                                </button>-->
                                 <p>Don't have an account? <a href="/UserServlet?action=create" class="link-info">Register here</a></p>
                             </div>
                         </form>
