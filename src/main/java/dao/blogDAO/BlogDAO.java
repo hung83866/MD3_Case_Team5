@@ -18,7 +18,7 @@ public class BlogDAO implements IBlogDAO{
     private static final String DELETE_BLOGS_SQL = "delete from blog where id = ?;";
     private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where id = ?;";
     private static final String SEARCH_BY_NAME = "select title, date, content, img, description, role from blog where title = ?;";
-    private static final String SELECT_BY_IDUSER = "SELECT * from BLOG GROUP BY IDUSER HAVING IDUSER = ?;";
+    private static final String SELECT_BY_IDUSER = "SELECT * from BLOG where iduser=?;";
     public BlogDAO() {
     }
 
@@ -62,6 +62,7 @@ public class BlogDAO implements IBlogDAO{
 
     @Override
     public Blog select(int id) {
+        UserDAO userDAO = new UserDAO();
         Blog blog = null;
         // Step 1: Establishing a Connection
         try (Connection connection = DBconnection.getConnection();
@@ -75,12 +76,14 @@ public class BlogDAO implements IBlogDAO{
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 String title = rs.getString("title");
-                String date = rs.getString(String.valueOf(new Date()));
+                String date = rs.getString("date");
                 String content = rs.getString("content");
                 String img = rs.getString("img");
-                String descripttion = rs.getString("descripttion");
+                String descripttion = rs.getString("description");
                 int role = Integer.parseInt(rs.getString("role"));
-                blog = new Blog(id, title, date, content, img,descripttion,role);
+                int iduser = Integer.parseInt(rs.getString("iduser"));
+                User user = userDAO.select(id);
+                blog = new Blog(id, title, date, content, img,descripttion,role,user);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -179,6 +182,7 @@ public class BlogDAO implements IBlogDAO{
 
     @Override
     public List<Blog> searchByName(String name) {
+        UserDAO userDAO = new UserDAO();
         List<Blog> blogs = new ArrayList<>();
         // Step 1: Establishing a Connection
         try (Connection connection = DBconnection.getConnection();
@@ -193,12 +197,13 @@ public class BlogDAO implements IBlogDAO{
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
-                String date = rs.getString(String.valueOf(new Date()));
+                String date = rs.getString("date");
                 String content = rs.getString("content");
                 String img = rs.getString("img");
-                String descripttion = rs.getString("descripttion");
+                String descripttion = rs.getString("description");
                 int role = rs.getInt("role");
-                blogs.add(new Blog(id, title, date, content, img,descripttion,role));
+                User user = userDAO.select(id);
+                blogs.add(new Blog(id, title, date, content, img,descripttion,role,user));
             }
         } catch (SQLException e) {
             printSQLException(e);

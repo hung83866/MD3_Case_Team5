@@ -10,6 +10,13 @@ public class Blog {
     private int role;
     private User user;
 
+    public Blog(String title, String date, String content, String description) {
+        this.title = title;
+        this.date = date;
+        this.content = content;
+        this.description = description;
+    }
+
     public Blog(int id, String title, String date, String content, String img, String description, int role) {
         this.id = id;
         this.title = title;
