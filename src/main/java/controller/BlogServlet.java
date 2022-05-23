@@ -40,6 +40,9 @@ public class BlogServlet extends HttpServlet {
                 case "search":
                     showSearchForm(request, response);
                     break;
+                case "view":
+                    viewBlog(request, response);
+                    break;
                 default:
                     listBlog(request, response);
                     break;
@@ -48,8 +51,16 @@ public class BlogServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+
+    private void viewBlog(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+    }
+
     private void listBlog(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         List<Blog> blogs = blogDAO.selectAll();
         System.out.println(blogs);
         request.setAttribute("listAll", blogs);
@@ -59,6 +70,8 @@ public class BlogServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/blogCreate.jsp");
         dispatcher.forward(request, response);
     }
@@ -70,6 +83,7 @@ public class BlogServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         Blog existingBlog = blogDAO.select(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/edit.jsp");
         request.setAttribute("product", existingBlog);
@@ -78,8 +92,7 @@ public class BlogServlet extends HttpServlet {
     private void deleteBlog(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        blogDAO.delete(id);
-
+        request.setAttribute("id",id);
         List<Blog> blogs = blogDAO.selectAll();
         request.setAttribute("listAll", blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/list.jsp");
