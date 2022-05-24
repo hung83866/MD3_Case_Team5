@@ -95,6 +95,7 @@
             <div class="col-md-12">
                 <div class="heading">
                     <h3>User <span class="orange_color">List</span></h3>
+                    <h3>${mes1}</h3>
                 </div>
             </div>
         </div>

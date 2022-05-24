@@ -260,19 +260,19 @@ public class UserServlet extends HttpServlet {
                 List<User> users = userDAO.selectAll();
                 request.setAttribute("users",users);
                 userDAO.editPassword(id,newPass);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/home1.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
                 dispatcher.forward(request, response);
             }
             else {
                 String  mes = "*Mật khẩu không chính xác!*";
                 request.setAttribute("mes",mes);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/newpass1.jsp");
                 dispatcher.forward(request, response);
             }
         }else {
             String  mess = "*Mật khẩu không khớp!*";
             request.setAttribute("mess",mess);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("admin/newpass1.jsp");
             dispatcher.forward(request, response);
         }
 
