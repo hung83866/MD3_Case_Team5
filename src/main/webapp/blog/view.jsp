@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <c:forEach items="${view}" var="view">
+
             <div class="row">
                 <div class="col-md-6">
                     <img src="${view.img}" alt="#" />
@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </c:forEach>
+
     </div>
 </div>
 

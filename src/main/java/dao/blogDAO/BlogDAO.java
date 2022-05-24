@@ -13,7 +13,7 @@ import java.util.List;
 public class BlogDAO implements IBlogDAO{
 
     private static final String INSERT_BLOG_SQL = "INSERT INTO blog (title, date, content, img, description, role) VALUES (?, ?, ?, ?, ?, ?);";
-    private static final String SELECT_BLOG_BY_ID = "select id,title, date, content, img, description, role from blog where id =?";
+    private static final String SELECT_BLOG_BY_ID = "select * from blog where id =?";
     private static final String SELECT_ALL_BLOGS = "select * from blog";
     private static final String DELETE_BLOGS_SQL = "delete from blog where id = ?;";
     private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where id = ?;";
@@ -22,10 +22,7 @@ public class BlogDAO implements IBlogDAO{
     public BlogDAO() {
     }
 
-    public static void main(String[] args) {
-        BlogDAO blogDAO = new BlogDAO();
-        System.out.println(blogDAO.selectByIDuser(1));
-    }
+
     @Override
     public void insert(Blog blog) throws SQLException {
         System.out.println(INSERT_BLOG_SQL);
@@ -91,6 +88,11 @@ public class BlogDAO implements IBlogDAO{
         return blog;
     }
 
+    public static void main(String[] args) {
+        BlogDAO blogDAO = new BlogDAO();
+        System.out.println(blogDAO.select(2));
+    }
+
     @Override
     public List<Blog> selectAll() {
         UserDAO userDAO = new UserDAO();
@@ -122,6 +124,7 @@ public class BlogDAO implements IBlogDAO{
         }
         return blogs;
     }
+
     public List<Blog> selectByIDuser(int iduser) {
         UserDAO userDAO = new UserDAO();
         List<Blog> blogs = new ArrayList<>();

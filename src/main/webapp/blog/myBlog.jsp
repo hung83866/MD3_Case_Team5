@@ -112,7 +112,7 @@
                     <h5>${blogs.date}</h5>
 <%--                    <p>${blogs.role}</p>--%>
                     <div class="button_section">
-                        <a STYLE="background: #1e7e34" href="/BlogServlet?action=view&id=${id}">VIEW</a>
+                        <a STYLE="background: #1e7e34" href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}">VIEW</a>
                         <a STYLE="background: #117a8b" href="/BlogServlet?action=edit1&id=${id}">EDIT</a>
                         <a STYLE="background: #1d2124 "  href="/BlogServlet?action=delete&id=${id}">DELETE</a>
                     </div>
