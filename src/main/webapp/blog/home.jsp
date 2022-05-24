@@ -66,7 +66,7 @@
                   <a href="/UserServlet?action=myblog&id=${id}">MyBlog</a>
                 </li>
                 <li>
-                  <a href="/UserServlet?action=profile&id=${id}">profile</a>
+                  <a href="/UserServlet?action=profile1&id=${id}">profile</a>
                 </li>
                 <li>
                   <a href="/UserServlet?action=logout">Log out</a>

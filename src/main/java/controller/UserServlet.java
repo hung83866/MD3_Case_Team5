@@ -223,7 +223,7 @@ public class UserServlet extends HttpServlet {
         String newPass = request.getParameter("newpassword");
         String rePass = request.getParameter("repassword");
         request.setAttribute("id",id);
-        User user = userDAO.select(id-1);
+        User user = userDAO.select(id);
         if (newPass.equals(rePass)){
             if (user.getPassWord().equals(oldPass)){
                 String  mes1 = "*Đổi mật khẩu thành công!*";
@@ -257,8 +257,10 @@ public class UserServlet extends HttpServlet {
             if (user.getPassWord().equals(oldPass)){
                 String  mes1 = "*Đổi mật khẩu thành công!*";
                 request.setAttribute("mes1",mes1);
+                List<User> users = userDAO.selectAll();
+                request.setAttribute("users",users);
                 userDAO.editPassword(id,newPass);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/home.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/home1.jsp");
                 dispatcher.forward(request, response);
             }
             else {
@@ -395,6 +397,8 @@ public class UserServlet extends HttpServlet {
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
+//        int idblog = Integer.parseInt(request.getParameter("idblog"));
+//        request.setAttribute("idblog",idblog);
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");

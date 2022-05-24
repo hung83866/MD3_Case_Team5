@@ -94,7 +94,7 @@
                     <input type="password" name="repassword" class="form-control form-control-sm">
                     <span>${mess}</span>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block submit-btn">Confirm</button>
+                <button class="btn btn-primary btn-block submit-btn">Confirm</button>
             </form>
             <a href="UserServlet?action=n&id=${id}">COME BACK HOME  BLOG</a>
         </div>
