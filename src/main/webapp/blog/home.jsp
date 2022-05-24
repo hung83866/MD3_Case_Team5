@@ -111,6 +111,7 @@
           </div>
         </div>
       </div>
+      <br>
     </c:forEach>
   </div>
 </div>

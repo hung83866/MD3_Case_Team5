@@ -109,7 +109,7 @@
                         <h4 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h4>
                         <h2>username : ${users.userName}</h2>
                         <div class=" button_section">
-                            <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog&id=${users.id}">VIEW</a>
+                            <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog1&id=${users.id}">VIEW</a>
                             <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
                         </div>
                     </div>

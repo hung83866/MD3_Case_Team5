@@ -102,23 +102,24 @@
             </div>
         </div>
         <c:forEach items="${blogs}" var="blogs">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="${blogs.img}" alt="#" />
-            </div>
-            <div class="col-md-6">
-                <div class="full blog_cont">
-                    <h4>${blogs.title}</h4>
-                    <h5>${blogs.date}</h5>
-<%--                    <p>${blogs.role}</p>--%>
-                    <div class="button_section">
-                        <a STYLE="background: #1e7e34" href="/BlogServlet?action=view&id=${id}">VIEW</a>
-                        <a STYLE="background: #117a8b" href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a>
-                        <a STYLE="background: #1d2124 "  href="/BlogServlet?action=delete&id=${id}&idblog=${blogs.id}">DELETE</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="${blogs.img}" alt="#"/>
+                </div>
+                <div class="col-md-6">
+                    <div class="full blog_cont">
+                        <h4>${blogs.title}</h4>
+                        <h5>${blogs.date}</h5>
+                        <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-primary" type="button"> <a href="/BlogServlet?action=view&id=${id}">VIEW</a></button>
+                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a></button>
+                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=delete&id=${id}&idblog=${blogs.id}">DELETE</a></button>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
-        </div>
             <br>
             <br>
         </c:forEach>

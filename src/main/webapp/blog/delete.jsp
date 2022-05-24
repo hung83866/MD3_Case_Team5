@@ -11,13 +11,23 @@
     <title>Title</title>
 </head>
 <body>
-<center>
-    <h1>Delete???</h1>
-    <form method="post" action="BlogServlet?action=delete&id=${id}&idblog=${idblog}">
-        <button style="width: 100px;height: 50px;background: #28a745;border-radius: 20px">YES</button>
-    </form>
-    <a href="/UserServlet?id=${id}"><h3 style="width: 100px;height: 50px ;background: #003eff;border-radius: 20px">NO</h3></a>
-
+<center >
+    <div style="background-image: url('/images/img7.jpg') ;height: 100%;width: 100%">
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <table border="4">
+            <tr>
+                <th colspan="2" style="color: black"><h2>Do you want delete your blog</h2></th>
+            </tr><tr>
+            <th> <form method="post" action="BlogServlet?action=delete&id=${id}&idblog=${idblog}" ><br>
+                <button style="width: 100px;height: 50px;background: #38c8a8;border-radius: 20px">YES</button>
+            </form></th>
+            <th><a href="/UserServlet?id=${id}">
+                <button style="width: 100px;height: 50px ;background: #38c8a8;border-radius: 20px">NO</button>
+            </a>
+            </th>
+        </tr>
+        </table>
+    </div>
 </center>
 
 </body>

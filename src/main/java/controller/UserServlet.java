@@ -24,6 +24,9 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -59,6 +62,9 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "myblog":
                     showMyBlogList(request, response);
+                    break;
+                case "myblog1":
+                    showMyBlogList1(request, response);
                     break;
                 case "newpass":
                     showNewPass(request, response);
@@ -114,6 +120,15 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);
     }
+    private void showMyBlogList1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        List<Blog> blogs= blogDAO.selectByIDuser(id);
+        request.setAttribute("blogs",blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/myBlog.jsp");
+        dispatcher.forward(request, response);
+    }
+
 
     private void showUserList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users= userDAO.selectAll();
@@ -184,6 +199,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
