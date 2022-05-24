@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Jack Blogger</title>
+    <title>Blog HBT</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +28,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif"/>
+    <link rel="icon" href="/images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -66,7 +66,7 @@
                                     <a href="/UserServlet?action=userlist">USER</a>
                                 </li>
                                 <li>
-                                    <a href="blog.html">BLOG</a>
+                                    <a href="/UserServlet">BLOG</a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=loguot">LOG OUT</a>
@@ -99,25 +99,24 @@
             </div>
         </div>
         <c:forEach items="${users}" var="users">
-        <div style="background-image: url('/images/im3.webp')" class="row">
-            <div class="col-md-6">
-                <img style="height: 200px;border-radius: 50%" src=${users.img} alt="#"/>
-            </div>
-            <div class="col-md-6">
-                <div class=" full blog_cont">
-                    <h4 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h4>
-                    <h2>username : ${users.userName}</h2>
-<%--                    <p>email : ${users.email}</p>--%>
-<%--                    <p>address : ${users.address}</p>--%>
-<%--                    <p>phone : ${users.telephoneNumber}</p>--%>
-                    <div class=" button_section">
-                        <a STYLE="background: #184091;border-radius: 5%" href="about.html">VIEW</a>
-                        <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
+            <div style="background-image: url('/images/im3.webp')" class="row">
+                <div class="col-md-6">
+                    <img style="height: 200px;border-radius: 50%" src=${users.img} alt="#"/>
+                </div>
+                <div class="col-md-6">
+                    <div class=" full blog_cont">
+                        <h4 style="text-align: center;font-family: 'Arial Rounded MT Bold'">${users.firstname} ${users.lastname}</h4>
+                        <h2>username : ${users.userName}</h2>
+                        <div class=" button_section">
+                            <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog&id=${users.id}">VIEW</a>
+                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-            <br><br><br>
+            <br>
+            <br>
+            <br>
         </c:forEach>
     </div>
 </div>

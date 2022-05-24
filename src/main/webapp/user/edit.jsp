@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Jack Blogger</title>
+    <title>Blog HBT</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -21,7 +21,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="/images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -154,19 +154,20 @@
 
                     <div class="small font-italic text-muted mb-4">${user.userName}</div>
                     <!-- Profile picture upload button-->
-                    <a href="https://google.com/" target="_blank">CHANGE</a>
+                    <a href="https://google.com/" target="_blank">Avatar update</a>
+                    <a href="/UserServlet?action=newpass&id=${user.id}">Password update</a>
 
                 </div>
             </div>
         </div>
-<h2 style="color:red;">${mes}</h2>
         <form method="post"></form>
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
-                    <form method="post">>
+                    <form method="post">
+                        <h2 style="color:red;">${mes}</h2>
                         <div class="mb-3">
                             <label class="small mb-1" for="img">Image</label>
                             <input class="form-control" id="img"  name="img" placeholder="image" value="${user.img}">

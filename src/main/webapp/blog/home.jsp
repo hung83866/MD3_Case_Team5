@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- site metas -->
-  <title>Jack Blogger</title>
+  <title>Blog HBT</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -28,11 +28,9 @@
   <!-- Responsive-->
   <link rel="stylesheet" href="css/responsive.css">
   <!-- fevicon -->
-  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <link rel="icon" href="/images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" type="image/gif" />
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-  <!-- Tweaks for older IEs-->
-  <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
@@ -52,6 +50,7 @@
           <div class="center-desk">
             <div class="logo"> <a href="/home.jsp"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png"
                                                        style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+<%--            <div class="logo"> <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>--%>
           </div>
         </div>
       </div>
@@ -88,9 +87,11 @@
       </div>
     </div>
   </div>
+<%--  --%>
+
   <!-- end header inner -->
 </header>
-<div class="section layout_padding">
+<div class="section layout_padding" >
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -99,6 +100,7 @@
         </div>
       </div>
     </div>
+
     <c:forEach items="${blogs}" var="blogs">
       <div class="row">
         <div class="col-md-6">

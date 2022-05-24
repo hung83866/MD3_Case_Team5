@@ -37,6 +37,9 @@ public class UserServlet extends HttpServlet {
                 case "edit":
                     showEditForm(request, response);
                     break;
+                case "edit1":
+                    showEditForm1(request, response);
+                    break;
                 case "delete":
                     deleteUser(request, response);
                     break;
@@ -49,11 +52,17 @@ public class UserServlet extends HttpServlet {
                 case "profile":
                     showProfile(request, response);
                     break;
+                case "profile1":
+                    showProfile1(request, response);
+                    break;
                 case "userlist":
                     showUserList(request,response);
                     break;
                 case "myblog":
                     showMyBlogList(request, response);
+                    break;
+                case "newpass":
+                    showNewPass(request, response);
                     break;
                 default:
                     showListBlog(request, response);
@@ -62,6 +71,13 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void showNewPass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void showListBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,6 +113,14 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
+    private void showProfile1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        User existingUser = userDAO.selectAll().get(id-1);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/profile1.jsp");
+        request.setAttribute("user", existingUser);
+        dispatcher.forward(request, response);
+    }
 
     private void logoutAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -123,6 +147,14 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
         User existingUser = userDAO.selectAll().get(id-1);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
+        request.setAttribute("user", existingUser);
+        dispatcher.forward(request, response);
+    }
+    private void showEditForm1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        User existingUser = userDAO.selectAll().get(id-1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -146,6 +178,9 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "edit":
                     updateUser(request, response);
+                    break;
+                case "edit1":
+                    updateUser1(request, response);
                     break;
                 case "search":
                     searchUserByName(request, response);
@@ -188,7 +223,7 @@ public class UserServlet extends HttpServlet {
         }
 
         if (check) {
-            String mes = "*sai thông tin đăng nhập!hãy thử lại!*";
+            String mes = "*sai thông tin đăng nhập!hãy thử lại!* ";
             request.setAttribute("mes", mes);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
@@ -254,8 +289,9 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    private void updateUser1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -264,14 +300,35 @@ public class UserServlet extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String address = request.getParameter("address");
         String telephonenumber = request.getParameter("telephonenumber");
-
+        request.setAttribute("id",id);
         User user = new User(id, username, email, password, img,firstname,lastname,address,telephonenumber);
         userDAO.update(user);
-        String mes = "edit done! vào database xem đổi chưa";
+        String mes = "edit done!";
         request.setAttribute("mes",mes);
         User existingUser = userDAO.selectAll().get(id-1);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/profile.jsp");
         request.setAttribute("user", existingUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String img = request.getParameter("img");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String address = request.getParameter("address");
+        String telephonenumber = request.getParameter("telephonenumber");
+        request.setAttribute("id",id);
+        User user = new User(id, username, email, password, img,firstname,lastname,address,telephonenumber);
+        userDAO.update(user);
+        String mes = "edit done!";
+        request.setAttribute("mes",mes);
+        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("user", existingUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
         dispatcher.forward(request, response);
     }
 
