@@ -86,9 +86,9 @@
     </div>
     <!-- end header inner -->
 </header>
-<div class="button_section">
-    <a STYLE=" margin-top:20px;float : right; background: #abdde5" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>
-</div>
+<%--<div class="button_section">--%>
+<%--    <a STYLE=" margin-top:20px;float : right; background: #abdde5" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>--%>
+<%--</div>--%>
 <div class="section layout_padding">
     <div class="container">
         <div class="row">
@@ -108,9 +108,9 @@
                         <h4>${blogs.title}</h4>
                         <h5>${blogs.date}</h5>
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary" type="button"> <a href="/BlogServlet?action=view&id=${id}">VIEW</a></button>
-                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a></button>
-                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=delete&id=${id}&idblog=${blogs.id}">DELETE</a></button>
+                            <button class="btn btn-primary" type="button"> <a href="/BlogServlet?action=view1&id=${id}&idblog=${blogs.id}">VIEW</a></button>
+<%--                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a></button>--%>
+                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=delete1&id=${id}&idblog=${blogs.id}">DELETE</a></button>
                         </div>
 
 

@@ -45,6 +45,9 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+                case "deleteUser":
+                    deleteForm(request, response);
+                    break;
                 case "search":
                     showSearchForm(request, response);
                     break;
@@ -82,6 +85,15 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void deleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        User user = userDAO.select(id);
+        request.setAttribute("user",user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/deleteUser.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void showNewPass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -125,7 +137,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("id",id);
         List<Blog> blogs= blogDAO.selectByIDuser(id);
         request.setAttribute("blogs",blogs);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/myBlog.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/myblog.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -161,7 +173,11 @@ public class UserServlet extends HttpServlet {
 
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/search.jsp");
+        String name = request.getParameter("name");
+        request.setAttribute("name",name);
+        List<User> users = userDAO.searchByName(name);
+        request.setAttribute("users",users);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/search.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -172,6 +188,17 @@ public class UserServlet extends HttpServlet {
         List<User> listUser = userDAO.selectAll();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void deleteUser1(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        userDAO.delete(id);
+        request.setAttribute("id",id);
+        List<User> listUser = userDAO.selectAll();
+        request.setAttribute("users", listUser);
+        String mes = "successful delete!";
+        request.setAttribute("mes",mes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -216,8 +243,11 @@ public class UserServlet extends HttpServlet {
                 case "edit1":
                     updateUser1(request, response);
                     break;
+                case "deleteUser":
+                    deleteUser1(request, response);
+                    break;
                 case "search":
-                    searchUserByName(request, response);
+                    showSearchForm( request, response);
                     break;
                 case "newpass":
                     newPass(request, response);

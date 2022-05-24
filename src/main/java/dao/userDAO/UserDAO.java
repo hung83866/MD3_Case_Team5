@@ -20,7 +20,7 @@ public class UserDAO implements IUserDAO{
     private static final String SELECT_ALL_USER = "select * from user;";
     private static final String DELETE_USER_SQL = "delete from user where id = ?;";
     private static final String UPDATE_USER_SQL = "update user set username = ?,email= ?,password= ?,img= ? where id = ?;";
-    private static final String SEARCH_BY_NAME = "select * from user where username = ?;";
+    private static final String SEARCH_BY_NAME = "select * from user where username like '%=?%';";
     private static final String EDIT_USER_SQL = "update user set email =?,img =?, firstname =?, lastname =?, address= ?, telephoneNumber =? where id= ?";
     private static final String UPDATE_PASS_SQL = "update user set password= ? where id = ?;";
 
@@ -179,7 +179,11 @@ public class UserDAO implements IUserDAO{
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String img = rs.getString("img");
-                users.add(new User(id, username, email, password,img));
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String address = rs.getString("address");
+                String telephonenumber = rs.getString("telephonenumber");
+                users.add(new User(id, username, email, password,img,firstname,lastname,address,telephonenumber));
             }
         } catch (SQLException e) {
             printSQLException(e);

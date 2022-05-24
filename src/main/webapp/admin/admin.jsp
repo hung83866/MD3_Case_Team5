@@ -69,16 +69,17 @@
                                     <a href="/UserServlet?action=adminBlog">BLOG</a>
                                 </li>
                                 <li>
-                                    <a href="/UserServlet?action=logout?">LOG OUT</a>
+                                    <a href="/UserServlet?action=logout">LOG OUT</a>
                                 </li>
                                 <li>
-                                    <form action="/UserServlet?action=search">
-                                        <input type="text" id="search" name="search" placeholder="Search..">
+                                    <form method="post" action="UserServlet?action=search">
+                                        <input type="text" name="name" placeholder="Search user by name..">
+                                        <button><img src="images/search_icon.png" alt="#"/></button>
                                     </form>
                                 </li>
-                                <li>
-                                    <a href="#"><img src="images/search_icon.png" alt="#"/></a>
-                                </li>
+<%--                                <li>--%>
+<%--                                    <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#"/></a>--%>
+<%--                                </li>--%>
 
                             </ul>
                         </nav>
@@ -95,7 +96,9 @@
             <div class="col-md-12">
                 <div class="heading">
                     <h3>User <span class="orange_color">List</span></h3>
-                    <h3>${mes1}</h3>
+                    <h3 style="color : red;">${mes1}</h3>
+                    <h3 style="color: red;">${mes}</h3>
+
                 </div>
             </div>
         </div>
@@ -111,6 +114,7 @@
                         <div class=" button_section">
                             <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog1&id=${users.id}">VIEW</a>
                             <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
+                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=deleteUser&id=${users.id}">DELETE</a>
                         </div>
                     </div>
                 </div>

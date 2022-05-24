@@ -101,13 +101,13 @@
     <c:forEach items="${blogs}" var="blogs">
       <div class="row">
         <div class="col-md-6">
-          <img src="${blogs.img}" alt="#" />
+          <a href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}"><img src="${blogs.img}" alt="#" /></a>
         </div>
         <div class="col-md-6">
           <div class="full blog_cont">
-            <h4>${blogs.title}</h4>
-            <h5>${blogs.date}</h5>
-            <p>${blogs.role}</p>
+            <h4><a href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}">${blogs.title}</a></h4>
+            <h5>Date : ${blogs.date}</h5>
+<%--            <p>${blogs.role}</p>--%>
           </div>
         </div>
       </div>

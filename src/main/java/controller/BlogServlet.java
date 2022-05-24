@@ -42,11 +42,17 @@ public class BlogServlet extends HttpServlet {
                 case "delete":
                     deleteBlog(request, response);
                     break;
+                case "delete1":
+                    deleteBlog1(request, response);
+                    break;
                 case "search":
                     showSearchForm(request, response);
                     break;
                 case "view":
                     viewBlog(request, response);
+                    break;
+                case "view1":
+                    viewBlog1(request, response);
                     break;
                 default:
                     listBlog(request, response);
@@ -57,9 +63,25 @@ public class BlogServlet extends HttpServlet {
         }
     }
 
-    private void viewBlog(HttpServletRequest request, HttpServletResponse response) {
+    private void viewBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
+        int idblog = Integer.parseInt(request.getParameter("idblog"));
+        request.setAttribute("idblog",idblog);
+        Blog blog = blogDAO.select(idblog);
+        request.setAttribute("view",blog);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/view.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void viewBlog1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        int idblog = Integer.parseInt(request.getParameter("idblog"));
+        request.setAttribute("idblog",idblog);
+        Blog blog = blogDAO.select(idblog);
+        request.setAttribute("view",blog);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/view.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void listBlog(HttpServletRequest request, HttpServletResponse response)
@@ -107,6 +129,17 @@ public class BlogServlet extends HttpServlet {
         request.setAttribute("blog", existingBlog);
         dispatcher.forward(request, response);
     }
+    private void deleteBlog1(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        int idblog = Integer.parseInt(request.getParameter("idblog"));
+        request.setAttribute("idblog",idblog);
+        Blog existingBlog = blogDAO.select(idblog);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/delete.jsp");
+        request.setAttribute("blog", existingBlog);
+        dispatcher.forward(request, response);
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -127,8 +160,14 @@ public class BlogServlet extends HttpServlet {
                 case "delete":
                     delete_SQL_Blog(request, response);
                     break;
+                case "delete1":
+                    delete_SQL_Blog1(request, response);
+                    break;
                 case "search":
-                    searchUserByName(request, response);
+                    showSearchForm(request, response);
+                    break;
+                case "view":
+                    viewBlog(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -145,6 +184,17 @@ public class BlogServlet extends HttpServlet {
         List<Blog> blogs= blogDAO.selectByIDuser(id);
         request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void delete_SQL_Blog1(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        int idblog = Integer.parseInt(request.getParameter("idblog"));
+        request.setAttribute("idblog",idblog);
+        blogDAO.delete2(id,idblog);
+        List<Blog> blogs= blogDAO.selectByIDuser(id);
+        request.setAttribute("blogs",blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
         dispatcher.forward(request, response);
     }
 
