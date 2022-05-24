@@ -66,10 +66,10 @@
                                     <a href="/UserServlet?action=userlist">USER</a>
                                 </li>
                                 <li>
-                                    <a href="/UserServlet">BLOG</a>
+                                    <a href="/UserServlet?action=adminBlog">BLOG</a>
                                 </li>
                                 <li>
-                                    <a href="/UserServlet?action=loguot">LOG OUT</a>
+                                    <a href="/UserServlet?action=logout?">LOG OUT</a>
                                 </li>
                                 <li>
                                     <form action="/UserServlet?action=search">

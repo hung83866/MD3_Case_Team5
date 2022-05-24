@@ -13,18 +13,19 @@ import java.util.List;
 public class BlogDAO implements IBlogDAO{
 
     private static final String INSERT_BLOG_SQL = "INSERT INTO blog (title, date, content, img, description, role) VALUES (?, ?, ?, ?, ?, ?);";
-    private static final String SELECT_BLOG_BY_ID = "select id,title, date, content, img, description, role from blog where id =?";
+    private static final String SELECT_BLOG_BY_ID = "select * from blog where id =?";
     private static final String SELECT_ALL_BLOGS = "select * from blog";
     private static final String DELETE_BLOGS_SQL = "delete from blog where id = ?;";
-    private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where id = ?;";
+    private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where iduser = ? and id = ?;";
     private static final String SEARCH_BY_NAME = "select title, date, content, img, description, role from blog where title = ?;";
     private static final String SELECT_BY_IDUSER = "SELECT * from BLOG where iduser=?;";
+    private static final String DELETE_BLOGS_SQL1 = "delete from blog where id = ? and iduser = ?;";
     public BlogDAO() {
     }
 
     public static void main(String[] args) {
         BlogDAO blogDAO = new BlogDAO();
-        System.out.println(blogDAO.selectByIDuser(1));
+        System.out.println(blogDAO.select(1));
     }
     @Override
     public void insert(Blog blog) throws SQLException {
@@ -82,7 +83,7 @@ public class BlogDAO implements IBlogDAO{
                 String descripttion = rs.getString("description");
                 int role = Integer.parseInt(rs.getString("role"));
                 int iduser = Integer.parseInt(rs.getString("iduser"));
-                User user = userDAO.select(id);
+                User user = userDAO.select(iduser);
                 blog = new Blog(id, title, date, content, img,descripttion,role,user);
             }
         } catch (SQLException e) {
@@ -162,6 +163,15 @@ public class BlogDAO implements IBlogDAO{
         }
         return rowDeleted;
     }
+    public boolean delete2(int id,int idblog) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = DBconnection.getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_BLOGS_SQL1);) {
+            statement.setInt(1, idblog);
+            statement.setInt(2, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
 
     @Override
     public boolean update(Blog blog) throws SQLException {
@@ -173,7 +183,8 @@ public class BlogDAO implements IBlogDAO{
             statement.setString(4, blog.getImg());
             statement.setString(5, blog.getDescription());
             statement.setInt(6, blog.getRole());
-            statement.setInt(7,blog.getId());
+            statement.setInt(7,blog.getUser().getId());
+            statement.setInt(8,blog.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }

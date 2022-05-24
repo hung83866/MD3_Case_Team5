@@ -78,22 +78,25 @@
         <h2 style="color:red;">${mes}</h2>
         <h3 class="card-title text-center">Change password</h3>
         <div class="card-text">
-            <form method="post">
+            <form method="post" action="UserServlet?action=newpass&id=${id}">
                 <div class="form-group">
                     <label>Old password</label>
                     <input type="password" name="oldpassword" class="form-control form-control-sm">
+                    <span>${mes}</span>
                 </div>
                 <div class="form-group">
                     <label>Your new password</label>
                     <input type="password" name="newpassword" class="form-control form-control-sm">
+
                 </div>
                 <div class="form-group">
                     <label>Repeat password</label>
                     <input type="password" name="repassword" class="form-control form-control-sm">
+                    <span>${mess}</span>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block submit-btn">Confirm</button>
             </form>
-            <a href="">COME BACK HOME  BLOG</a>
+            <a href="UserServlet?action=n&id=${id}">COME BACK HOME  BLOG</a>
         </div>
     </div>
 </div>

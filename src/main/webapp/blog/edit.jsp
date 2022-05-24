@@ -2,11 +2,10 @@
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 5/21/2022
-  Time: 2:02 AM
+  Time: 2:06 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Blog HBT</title>
+    <title>Jack Blogger</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +27,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="/images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" type="image/gif" />
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -37,12 +36,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 <!-- body -->
-<body class="main-layout">
 
-<!-- loader  -->
-
-<!-- end loader -->
-<!-- header -->
+<body  class="main-layout">
 <header>
     <!-- header inner -->
     <div class="container-fluid">
@@ -50,7 +45,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"> <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+                        <div class="logo"> <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
                     </div>
                 </div>
             </div>
@@ -66,7 +61,7 @@
                                     <a href="/UserServlet?action=myblog&id=${id}">MyBlog</a>
                                 </li>
                                 <li>
-                                    <a href="/UserServlet?action=profile&id=${id} ">profile</a>
+                                    <a href="/UserServlet?action=profile&id=${id}">profile</a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=logout">Log out</a>
@@ -79,7 +74,6 @@
                                 <li>
                                     <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#" /></a>
                                 </li>
-
                             </ul>
                         </nav>
                     </div>
@@ -89,42 +83,52 @@
     </div>
     <!-- end header inner -->
 </header>
-<div class="button_section">
-    <a STYLE=" margin-top:20px;float : right; background: #abdde5" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>
-</div>
-<div class="section layout_padding">
+<!-- end header -->
+<div class="contact-bg">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="heading">
-                    <h3> My <span class="orange_color">Blog</span></h3>
+                <div class="contactheading">
+                    <h3>Edit Blog</h3>
                 </div>
             </div>
         </div>
-        <c:forEach items="${blogs}" var="blogs">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="${blogs.img}" alt="#" />
-            </div>
-            <div class="col-md-6">
-                <div class="full blog_cont">
-                    <h4>${blogs.title}</h4>
-                    <h5>${blogs.date}</h5>
-<%--                    <p>${blogs.role}</p>--%>
-                    <div class="button_section">
-                        <a STYLE="background: #1e7e34" href="/BlogServlet?action=view&id=${id}">VIEW</a>
-                        <a STYLE="background: #117a8b" href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a>
-                        <a STYLE="background: #1d2124 "  href="/BlogServlet?action=delete&id=${id}&idblog=${blogs.id}">DELETE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <br>
-            <br>
-        </c:forEach>
     </div>
 </div>
-
+<section class="layout_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full comment_form">
+                    <form method="post" action="/BlogServlet?action=edit&id=${id}&idblog=${idblog}">
+                        <fieldset>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" name="title" placeholder="Title" value="${blog.title}"/>
+                                        <input type="text" name="description" placeholder="Description" value="${blog.description}"/>
+                                        <input type="text" name="img" placeholder="img" value="${blog.img}"  />
+                                        <input type="text" name="role" placeholder="role" value="${blog.role}"  />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <textarea class="wdt" name="content" placeholder="Content" >${blog.content}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row margin_top_30">
+                                    <div class="col-md-12">
+                                        <div class="center">
+                                            <button>Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <footer>
     <div class="container">
         <div class="row">
@@ -175,24 +179,13 @@
         </div>
     </div>
 </footer>
-<div class="cpy">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p>Copyright © 2019 Design by <a href="https://html.design/">Free Html Templates</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end footer -->
-<!-- Javascript files-->
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/plugin.js"></script>
-<!-- Scrollbar Js Files -->
 <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/custom.js"></script>
+
 </body>
 </html>

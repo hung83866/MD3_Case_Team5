@@ -22,6 +22,7 @@ public class UserDAO implements IUserDAO{
     private static final String UPDATE_USER_SQL = "update user set username = ?,email= ?,password= ?,img= ? where id = ?;";
     private static final String SEARCH_BY_NAME = "select * from user where username = ?;";
     private static final String EDIT_USER_SQL = "update user set email =?,img =?, firstname =?, lastname =?, address= ?, telephoneNumber =? where id= ?";
+    private static final String UPDATE_PASS_SQL = "update user set password= ? where id = ?;";
 
     public UserDAO() {
     }
@@ -154,15 +155,11 @@ public class UserDAO implements IUserDAO{
         return rowUpdated;
     }
 
-    public boolean editUser(User user) throws SQLException {
+    public boolean editPassword(int id,String pass) throws SQLException {
         boolean rowUpdated;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL);) {
-            statement.setString(1, user.getUserName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getPassWord());
-            statement.setString(4, user.getImg());
-            statement.setInt(5, user.getId());
-
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_PASS_SQL);) {
+            statement.setString(1, pass);
+            statement.setInt(2,id);
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;

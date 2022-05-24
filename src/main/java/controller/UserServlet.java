@@ -64,6 +64,9 @@ public class UserServlet extends HttpServlet {
                 case "newpass":
                     showNewPass(request, response);
                     break;
+                case "adminBlog":
+                    showListBlog1(request, response);
+                    break;
                 default:
                     showListBlog(request, response);
                     break;
@@ -86,6 +89,12 @@ public class UserServlet extends HttpServlet {
         List<Blog> blogs= blogDAO.selectAll();
         request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void showListBlog1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Blog> blogs= blogDAO.selectAll();
+        request.setAttribute("blogs",blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/home1.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -185,6 +194,9 @@ public class UserServlet extends HttpServlet {
                 case "search":
                     searchUserByName(request, response);
                     break;
+                case "newpass":
+                    newPass(request, response);
+                    break;
                 default:
                     loginAccount(request, response);
                     break;
@@ -192,6 +204,65 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void newPass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String oldPass = request.getParameter("oldpassword");
+        String newPass = request.getParameter("newpassword");
+        String rePass = request.getParameter("repassword");
+        request.setAttribute("id",id);
+        User user = userDAO.select(id-1);
+        if (newPass.equals(rePass)){
+            if (user.getPassWord().equals(oldPass)){
+                String  mes1 = "*Đổi mật khẩu thành công!*";
+                request.setAttribute("mes1",mes1);
+                userDAO.editPassword(id,newPass);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+                dispatcher.forward(request, response);
+            }
+            else {
+                String  mes = "*Mật khẩu không chính xác!*";
+                request.setAttribute("mes",mes);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+                dispatcher.forward(request, response);
+            }
+        }else {
+            String  mess = "*Mật khẩu không khớp!*";
+            request.setAttribute("mess",mess);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+            dispatcher.forward(request, response);
+        }
+
+    }
+    private void newPass1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String oldPass = request.getParameter("oldpassword");
+        String newPass = request.getParameter("newpassword");
+        String rePass = request.getParameter("repassword");
+        request.setAttribute("id",id);
+        User user = userDAO.select(id);
+        if (newPass.equals(rePass)){
+            if (user.getPassWord().equals(oldPass)){
+                String  mes1 = "*Đổi mật khẩu thành công!*";
+                request.setAttribute("mes1",mes1);
+                userDAO.editPassword(id,newPass);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
+                dispatcher.forward(request, response);
+            }
+            else {
+                String  mes = "*Mật khẩu không chính xác!*";
+                request.setAttribute("mes",mes);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+                dispatcher.forward(request, response);
+            }
+        }else {
+            String  mess = "*Mật khẩu không khớp!*";
+            request.setAttribute("mess",mess);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+            dispatcher.forward(request, response);
+        }
+
     }
 
     private void loginAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
