@@ -168,7 +168,6 @@
                 <div class="card-body">
                     <form method="post">
                         <h2 style="color:red;">${mes}</h2>
-                        <h2 style="color:red;">${mes1}</h2>
                         <div class="mb-3">
                             <label class="small mb-1" for="img">Image</label>
                             <input class="form-control" id="img"  name="img" placeholder="image" value="${user.img}">

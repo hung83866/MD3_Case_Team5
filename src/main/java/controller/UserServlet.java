@@ -63,6 +63,9 @@ public class UserServlet extends HttpServlet {
                 case "newpass":
                     showNewPass(request, response);
                     break;
+                case "newpass1":
+                    showNewPass1(request, response);
+                    break;
                 case "adminBlog":
                     showListBlog1(request, response);
                     break;
@@ -79,6 +82,12 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void showNewPass1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/newpass1.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -155,7 +164,7 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
         User existingUser = userDAO.selectAll().get(id-1);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
@@ -163,7 +172,7 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id",id);
         User existingUser = userDAO.selectAll().get(id-1);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
@@ -196,6 +205,9 @@ public class UserServlet extends HttpServlet {
                 case "newpass":
                     newPass(request, response);
                     break;
+                case "newpass1":
+                    newPass1(request, response);
+                    break;
                 default:
                     loginAccount(request, response);
                     break;
@@ -217,7 +229,7 @@ public class UserServlet extends HttpServlet {
                 String  mes1 = "*Đổi mật khẩu thành công!*";
                 request.setAttribute("mes1",mes1);
                 userDAO.editPassword(id,newPass);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
             }
             else {
@@ -246,7 +258,7 @@ public class UserServlet extends HttpServlet {
                 String  mes1 = "*Đổi mật khẩu thành công!*";
                 request.setAttribute("mes1",mes1);
                 userDAO.editPassword(id,newPass);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/home.jsp");
                 dispatcher.forward(request, response);
             }
             else {

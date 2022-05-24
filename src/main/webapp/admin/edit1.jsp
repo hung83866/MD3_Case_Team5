@@ -152,7 +152,7 @@
                     <div class="small font-italic text-muted mb-4">${user.userName}</div>
                     <!-- Profile picture upload button-->
                     <a href="https://google.com/" target="_blank">Avatar update</a>
-                    <a href="/UserServlet?action=newpass&id=${user.id}">Password update</a>
+                    <a href="/UserServlet?action=newpass1&id=${user.id}">Password update</a>
                 </div>
             </div>
         </div>
