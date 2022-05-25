@@ -63,7 +63,7 @@
                                     <a href="/UserServlet?action=userlist">USER</a>
                                 </li>
                                 <li>
-                                    <a href=/UserServlet?action=adminBlog">BLOG</a>
+                                    <a href="/UserServlet?action=adminBlog">BLOG</a>
                                 </li>
                                 <li>
                                     <a href="/UserServlet?action=logout&id=0">LOG OUT</a>

@@ -111,7 +111,7 @@
                         <div class=" button_section">
                             <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog1&id=${users.id}">VIEW</a>
                             <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
-                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=deleteUser&id=${users.id}">DELETE</a>
+<%--                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=deleteUser&id=${users.id}">DELETE</a>--%>
                         </div>
                     </div>
                 </div>

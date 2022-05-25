@@ -221,7 +221,7 @@ public class BlogServlet extends HttpServlet {
         User user = userDAO.select(id);
         Blog newblog= new Blog(title, date, content,img, description,role,user);
         blogDAO.insert(newblog);
-        List<Blog> blogs = blogDAO.selectAll();
+        List<Blog> blogs = blogDAO.selectByIDuser(id);
         request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);

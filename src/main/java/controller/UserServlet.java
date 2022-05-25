@@ -315,10 +315,10 @@ public class UserServlet extends HttpServlet {
                     insertUser1(request, response);
                     break;
                 case "edit":
-                    updateUser(request, response);
+                    updateUser1(request, response);
                     break;
                 case "edit1":
-                    updateUser1(request, response);
+                    updateUser(request, response);
                     break;
                 case "deleteUser":
                     deleteUser1(request, response);
