@@ -70,7 +70,7 @@
                                 </li>
                                 <li>
                                     <form method="post" action="UserServlet?action=search2">
-                                        <input type="text" name="name" placeholder="Search user by name..">
+                                        <input type="text" name="name" placeholder="Search blog by name..">
                                         <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
                                 </li>
