@@ -45,11 +45,15 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+
                 case "deleteUser":
                     deleteForm(request, response);
                     break;
                 case "search":
                     showSearchForm(request, response);
+                    break;
+                case "search1":
+                    showSearchForm1(request, response);
                     break;
                 case "logout":
                     logoutAccount(request, response);
@@ -61,13 +65,16 @@ public class UserServlet extends HttpServlet {
                     showProfile1(request, response);
                     break;
                 case "userlist":
-                    showUserList(request,response);
+                    showUserList(request, response);
                     break;
                 case "myblog":
                     showMyBlogList(request, response);
                     break;
                 case "myblog1":
                     showMyBlogList1(request, response);
+                    break;
+                case "myblog2":
+                    showMyBlogList2(request, response);
                     break;
                 case "newpass":
                     showNewPass(request, response);
@@ -89,78 +96,113 @@ public class UserServlet extends HttpServlet {
 
     private void deleteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         User user = userDAO.select(id);
-        request.setAttribute("user",user);
+        request.setAttribute("user", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/deleteUser.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showNewPass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
         dispatcher.forward(request, response);
     }
+
     private void showNewPass1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/newpass1.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showListBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        List<Blog> blogs= blogDAO.selectAll();
-        request.setAttribute("blogs",blogs);
+        request.setAttribute("id", id);
+        List<Blog> blogs = blogDAO.selectAll();
+        request.setAttribute("blogs", blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
         dispatcher.forward(request, response);
     }
+
     private void showListBlog1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Blog> blogs= blogDAO.selectAll();
-        request.setAttribute("blogs",blogs);
+        List<Blog> blogs = blogDAO.selectAll();
+        request.setAttribute("blogs", blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/home1.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showMyBlogList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        List<Blog> blogs= blogDAO.selectByIDuser(id);
-        request.setAttribute("blogs",blogs);
+        request.setAttribute("id", id);
+        List<Blog> blogs = blogDAO.selectByIDuser(id);
+        request.setAttribute("blogs", blogs);
+        if (blogs.size() == 0) {
+            String mes = "not blogs!";
+            request.setAttribute("mes", mes);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);
     }
+
+    private void showMyBlogList2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id", id);
+        int iduser = Integer.parseInt(request.getParameter("iduser"));
+        request.setAttribute("iduser", iduser);
+        List<Blog> blogs = blogDAO.selectByIDuser(id);
+        request.setAttribute("blogs", blogs);
+        User user = userDAO.select(id);
+        request.setAttribute("user", user);
+        if (blogs.size() == 0) {
+            String mes = "not blogs!";
+            request.setAttribute("mes", mes);
+        }
+
+        if (id == iduser) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myblog1.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
     private void showMyBlogList1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        List<Blog> blogs= blogDAO.selectByIDuser(id);
-        request.setAttribute("blogs",blogs);
+        request.setAttribute("id", id);
+        List<Blog> blogs = blogDAO.selectByIDuser(id);
+        request.setAttribute("blogs", blogs);
+        if (blogs.size() == 0) {
+            String mes = "not blogs!";
+            request.setAttribute("mes", mes);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/myblog.jsp");
         dispatcher.forward(request, response);
     }
 
 
     private void showUserList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> users= userDAO.selectAll();
-        request.setAttribute("users",users);
+        List<User> users = userDAO.selectAll();
+        request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("id", id);
+        User existingUser = userDAO.select(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/profile.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
+
     private void showProfile1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("id", id);
+        User existingUser = userDAO.select(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/profile1.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -173,47 +215,82 @@ public class UserServlet extends HttpServlet {
 
 
     private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        request.setAttribute("id", id);
         String name = request.getParameter("name");
-        request.setAttribute("name",name);
+        request.setAttribute("name", name);
         List<User> users = userDAO.searchByName(name);
-        request.setAttribute("users",users);
+        if (users.size() == 0) {
+            String mes = "not found !";
+            request.setAttribute("mes", mes);
+        }
+        request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/search.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showSearchForm1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id", id);
+        String name = request.getParameter("name");
+        request.setAttribute("name", name);
+        List<Blog> blogs = blogDAO.searchByName(name);
+        if (blogs.size() == 0) {
+            String mes = "not found !";
+            request.setAttribute("mes", mes);
+        }
+        request.setAttribute("blogs", blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("blog/search.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void showSearchForm2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        request.setAttribute("name", name);
+        List<Blog> blogs = blogDAO.searchByName(name);
+        if (blogs.size() == 0) {
+            String mes = "not found !";
+            request.setAttribute("mes", mes);
+        }
+        request.setAttribute("blogs", blogs);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/search1.jsp");
         dispatcher.forward(request, response);
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         userDAO.delete(id);
-        request.setAttribute("id",id);
-        List<User> listUser = userDAO.selectAll();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        request.setAttribute("id", id);
+        String mes = "successful delete!";
+        request.setAttribute("mes", mes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
+
     private void deleteUser1(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         userDAO.delete(id);
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         List<User> listUser = userDAO.selectAll();
         request.setAttribute("users", listUser);
         String mes = "successful delete!";
-        request.setAttribute("mes",mes);
+        request.setAttribute("mes", mes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("id", id);
+        User existingUser = userDAO.selectAll().get(id - 1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
     }
+
     private void showEditForm1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
-        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("id", id);
+        User existingUser = userDAO.selectAll().get(id - 1);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -247,7 +324,13 @@ public class UserServlet extends HttpServlet {
                     deleteUser1(request, response);
                     break;
                 case "search":
-                    showSearchForm( request, response);
+                    showSearchForm(request, response);
+                    break;
+                case "search1":
+                    showSearchForm1(request, response);
+                    break;
+                case "search2":
+                    showSearchForm2(request, response);
                     break;
                 case "newpass":
                     newPass(request, response);
@@ -269,56 +352,55 @@ public class UserServlet extends HttpServlet {
         String oldPass = request.getParameter("oldpassword");
         String newPass = request.getParameter("newpassword");
         String rePass = request.getParameter("repassword");
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         User user = userDAO.select(id);
-        if (newPass.equals(rePass)){
-            if (user.getPassWord().equals(oldPass)){
-                String  mes1 = "*Đổi mật khẩu thành công!*";
-                request.setAttribute("mes1",mes1);
-                userDAO.editPassword(id,newPass);
+        if (newPass.equals(rePass)) {
+            if (user.getPassWord().equals(oldPass)) {
+                String mes1 = "*Đổi mật khẩu thành công!*";
+                request.setAttribute("mes1", mes1);
+                userDAO.editPassword(id, newPass);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
-            }
-            else {
-                String  mes = "*Mật khẩu không chính xác!*";
-                request.setAttribute("mes",mes);
+            } else {
+                String mes = "*Mật khẩu không chính xác!*";
+                request.setAttribute("mes", mes);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
                 dispatcher.forward(request, response);
             }
-        }else {
-            String  mess = "*Mật khẩu không khớp!*";
-            request.setAttribute("mess",mess);
+        } else {
+            String mess = "*Mật khẩu không khớp!*";
+            request.setAttribute("mess", mess);
             RequestDispatcher dispatcher = request.getRequestDispatcher("user/newpass.jsp");
             dispatcher.forward(request, response);
         }
 
     }
+
     private void newPass1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         String oldPass = request.getParameter("oldpassword");
         String newPass = request.getParameter("newpassword");
         String rePass = request.getParameter("repassword");
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         User user = userDAO.select(id);
-        if (newPass.equals(rePass)){
-            if (user.getPassWord().equals(oldPass)){
-                String  mes1 = "*Đổi mật khẩu thành công!*";
-                request.setAttribute("mes1",mes1);
+        if (newPass.equals(rePass)) {
+            if (user.getPassWord().equals(oldPass)) {
+                String mes1 = "*Đổi mật khẩu thành công!*";
+                request.setAttribute("mes1", mes1);
                 List<User> users = userDAO.selectAll();
-                request.setAttribute("users",users);
-                userDAO.editPassword(id,newPass);
+                request.setAttribute("users", users);
+                userDAO.editPassword(id, newPass);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
                 dispatcher.forward(request, response);
-            }
-            else {
-                String  mes = "*Mật khẩu không chính xác!*";
-                request.setAttribute("mes",mes);
+            } else {
+                String mes = "*Mật khẩu không chính xác!*";
+                request.setAttribute("mes", mes);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("admin/newpass1.jsp");
                 dispatcher.forward(request, response);
             }
-        }else {
-            String  mess = "*Mật khẩu không khớp!*";
-            request.setAttribute("mess",mess);
+        } else {
+            String mess = "*Mật khẩu không khớp!*";
+            request.setAttribute("mess", mess);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin/newpass1.jsp");
             dispatcher.forward(request, response);
         }
@@ -330,12 +412,12 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         List<User> userList = userDAO.selectAll();
         boolean check = true;
-        if (username.equals("Admin_Hung")&&password.equals("hungdz")||
-                username.equals("Admin_Binh")&&password.equals("binhdz")||
-                        username.equals("Admin_Thanh")&&password.equals("thanhdz")){
+        if (username.equals("Admin_Hung") && password.equals("hungdz") ||
+                username.equals("Admin_Binh") && password.equals("binhdz") ||
+                username.equals("Admin_Thanh") && password.equals("thanhdz")) {
             check = false;
-            List<User> users= userDAO.selectAll();
-            request.setAttribute("users",users);
+            List<User> users = userDAO.selectAll();
+            request.setAttribute("users", users);
             RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
             dispatcher.forward(request, response);
         }
@@ -343,10 +425,10 @@ public class UserServlet extends HttpServlet {
             if (username.equals(userList.get(i).getUserName())) {
                 if (password.equals(userList.get(i).getPassWord())) {
                     check = false;
-                    int id= i+1;
-                    request.setAttribute("id",id);
-                    List<Blog> blogs= blogDAO.selectAll();
-                    request.setAttribute("blogs",blogs);
+                    int id = i + 1;
+                    request.setAttribute("id", id);
+                    List<Blog> blogs = blogDAO.selectAll();
+                    request.setAttribute("blogs", blogs);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("blog/home.jsp");
                     dispatcher.forward(request, response);
                 }
@@ -369,8 +451,8 @@ public class UserServlet extends HttpServlet {
         String rePassword = request.getParameter("repass");
         List<User> userList = userDAO.selectAll();
         boolean check = true;
-        if (password.equals(rePassword)){
-        }else {
+        if (password.equals(rePassword)) {
+        } else {
             check = false;
             String messs1 = "password incorrect!";
             request.setAttribute("mes4", messs1);
@@ -408,21 +490,11 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void insertUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String img = request.getParameter("img");
-        User newUser = new User(username, email, password, img);
-        userDAO.insert(newUser);
-//      ***
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/login.jsp");
-        dispatcher.forward(request, response);
-    }
+
 
     private void updateUser1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -431,19 +503,20 @@ public class UserServlet extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String address = request.getParameter("address");
         String telephonenumber = request.getParameter("telephonenumber");
-        request.setAttribute("id",id);
-        User user = new User(id, username, email, password, img,firstname,lastname,address,telephonenumber);
+        request.setAttribute("id", id);
+        User user = new User(id, username, email, password, img, firstname, lastname, address, telephonenumber);
         userDAO.update(user);
         String mes = "edit done!";
-        request.setAttribute("mes",mes);
-        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("mes", mes);
+        User existingUser = userDAO.selectAll().get(id - 1);
         request.setAttribute("user", existingUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
     }
+
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id",id);
+        request.setAttribute("id", id);
 //        int idblog = Integer.parseInt(request.getParameter("idblog"));
 //        request.setAttribute("idblog",idblog);
         String username = request.getParameter("username");
@@ -454,12 +527,12 @@ public class UserServlet extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String address = request.getParameter("address");
         String telephonenumber = request.getParameter("telephonenumber");
-        request.setAttribute("id",id);
-        User user = new User(id, username, email, password, img,firstname,lastname,address,telephonenumber);
+        request.setAttribute("id", id);
+        User user = new User(id, username, email, password, img, firstname, lastname, address, telephonenumber);
         userDAO.update(user);
         String mes = "edit done!";
-        request.setAttribute("mes",mes);
-        User existingUser = userDAO.selectAll().get(id-1);
+        request.setAttribute("mes", mes);
+        User existingUser = userDAO.selectAll().get(id - 1);
         request.setAttribute("user", existingUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/edit1.jsp");
         dispatcher.forward(request, response);

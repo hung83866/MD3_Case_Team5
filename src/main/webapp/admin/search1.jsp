@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ADMIN
+  Date: 5/21/2022
+  Time: 2:02 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -52,25 +59,21 @@
                     <div class="limit-box">
                         <nav class="main-menu">
                             <ul class="menu-area-main">
-                                <li class="active">
-                                    <a href="/UserServlet?action=n&id=${id}">home</a>
-                                </li>
-                                <li class="active">
-                                    <a href="/UserServlet?action=myblog&id=${id}">MyBlog</a>
+                                <li>
+                                    <a href="/UserServlet?action=userlist">USER</a>
                                 </li>
                                 <li>
-                                    <a href="/UserServlet?action=profile&id=${id} ">profile</a>
+                                    <a href="/UserServlet?action=adminBlog">BLOG</a>
                                 </li>
                                 <li>
-                                    <a href="/UserServlet?action=logout">Log out</a>
+                                    <a href="/UserServlet?action=logout">LOG OUT</a>
                                 </li>
                                 <li>
-                                    <form method="post" action="UserServlet?action=search1&id=${id}">
-                                        <input type="text" name="name" placeholder="Search blog by title..">
+                                    <form method="post" action="UserServlet?action=search2">
+                                        <input type="text" name="name" placeholder="Search user by name..">
                                         <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
                                 </li>
-
                             </ul>
                         </nav>
                     </div>
@@ -85,25 +88,25 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h3> content <span class="orange_color">blog</span></h3>
+                    <h3> Blog <span class="orange_color">List</span></h3>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <img src="${view.img}" alt="#" />
-            </div>
-            <div class="col-md-6">
-                <div class="full blog_cont">
-                    <h4>${view.title}</h4>
-                    <h5>date : ${view.date}</h5>
-                    <h5>author : <a href="/UserServlet?action=myblog2&id=${view.user.id}&iduser=${id}">${view.user.userName}</a></h5>
-                    <h5>description : ${view.description}</h5>
-                    <h5>${view.content}</h5>
+        <c:forEach items="${blogs}" var="blogs">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}"><img src="${blogs.img}" alt="#" /></a>
+                </div>
+                <div class="col-md-6">
+                    <div class="full blog_cont">
+                        <h4><a href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}">${blogs.title}</a></h4>
+                        <h5>Date : ${blogs.date}</h5>
+                            <%--            <p>${blogs.role}</p>--%>
+                    </div>
                 </div>
             </div>
-        </div>
+            <br>
+        </c:forEach>
     </div>
 </div>
 
@@ -112,7 +115,7 @@
         <div class="row">
             <div class="col-lg-2 col-md-6">
                 <div class="footer_links">
-                    <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#" /></a>
+                    <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#" /></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">

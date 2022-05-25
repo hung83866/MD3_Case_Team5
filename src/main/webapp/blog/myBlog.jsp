@@ -72,12 +72,10 @@
                                     <a href="/UserServlet?action=logout">Log out</a>
                                 </li>
                                 <li>
-                                    <form>
-                                        <input type="text" name="search" placeholder="Search..">
+                                    <form method="post" action="UserServlet?action=search1&id=${id}">
+                                        <input type="text" name="name" placeholder="Search blog by title..">
+                                        <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
-                                </li>
-                                <li>
-                                    <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#" /></a>
                                 </li>
 
                             </ul>
@@ -90,7 +88,7 @@
     <!-- end header inner -->
 </header>
 <div class="button_section">
-    <a STYLE=" margin-top:20px;float : right; background: #abdde5" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>
+    <a STYLE=" margin-top:20px;float : right; background: #34ce57" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>
 </div>
 <div class="section layout_padding">
     <div class="container">
@@ -101,7 +99,9 @@
                 </div>
             </div>
         </div>
+        <h4 style="color: red;">${mes}</h4>
         <c:forEach items="${blogs}" var="blogs">
+
             <div class="row">
                 <div class="col-md-6">
                     <img src="${blogs.img}" alt="#"/>
@@ -110,13 +110,12 @@
                     <div class="full blog_cont">
                         <h4>${blogs.title}</h4>
                         <h5>${blogs.date}</h5>
+                        <h5>${blogs.user.userName}</h5>
                         <div class="d-grid gap-2 d-md-block">
                             <button class="btn btn-primary" type="button"> <a href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}">VIEW</a></button>
                             <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a></button>
                             <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=delete&id=${id}&idblog=${blogs.id}">DELETE</a></button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -131,7 +130,7 @@
         <div class="row">
             <div class="col-lg-2 col-md-6">
                 <div class="footer_links">
-                    <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#" /></a>
+                    <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#" /></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">

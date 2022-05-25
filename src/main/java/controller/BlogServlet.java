@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "BlogServlet", value = "/BlogServlet")
@@ -183,6 +184,10 @@ public class BlogServlet extends HttpServlet {
         blogDAO.delete2(id,idblog);
         List<Blog> blogs= blogDAO.selectByIDuser(id);
         request.setAttribute("blogs",blogs);
+        if (blogs.size()==0){
+            String mes = "not blogs!";
+            request.setAttribute("mes",mes);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);
     }
@@ -194,20 +199,30 @@ public class BlogServlet extends HttpServlet {
         blogDAO.delete2(id,idblog);
         List<Blog> blogs= blogDAO.selectByIDuser(id);
         request.setAttribute("blogs",blogs);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/admin.jsp");
+        if (blogs.size()==0){
+            String mes = "not blogs!";
+            request.setAttribute("mes",mes);
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/myblog.jsp");
         dispatcher.forward(request, response);
     }
 
     private void insertBlog(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+        UserDAO userDAO =new UserDAO();
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("id",id);
         String title = request.getParameter("title");
-        String date = request.getParameter("date");
+        String date = new Date()+"";
         String content = request.getParameter("content");
-//        String img = request.getParameter("img");
+        String img = request.getParameter("img");
         String description = request.getParameter("description");
-//        int role = Integer.parseInt(request.getParameter("role"));
-        Blog newblog= new Blog(title, date, content, description);
+        int role = Integer.parseInt(request.getParameter("role"));
+        User user = userDAO.select(id);
+        Blog newblog= new Blog(title, date, content,img, description,role,user);
         blogDAO.insert(newblog);
+        List<Blog> blogs = blogDAO.selectAll();
+        request.setAttribute("blogs",blogs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/myBlog.jsp");
         dispatcher.forward(request, response);
     }
@@ -228,6 +243,8 @@ public class BlogServlet extends HttpServlet {
         User user = userDAO.select(id);
         Blog newblog= new Blog(idblog,title, date, content, img,description,role,user);
         blogDAO.update(newblog);
+        Blog blog = blogDAO.select(idblog);
+        request.setAttribute("view",blog);
         RequestDispatcher dispatcher = request.getRequestDispatcher("blog/view.jsp");
         dispatcher.forward(request, response);
     }

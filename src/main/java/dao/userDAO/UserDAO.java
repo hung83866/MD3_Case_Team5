@@ -20,7 +20,7 @@ public class UserDAO implements IUserDAO{
     private static final String SELECT_ALL_USER = "select * from user;";
     private static final String DELETE_USER_SQL = "delete from user where id = ?;";
     private static final String UPDATE_USER_SQL = "update user set username = ?,email= ?,password= ?,img= ? where id = ?;";
-    private static final String SEARCH_BY_NAME = "select * from user where username like '%=?%';";
+    private static final String SEARCH_BY_NAME = "select * from user where username like ?;";
     private static final String EDIT_USER_SQL = "update user set email =?,img =?, firstname =?, lastname =?, address= ?, telephoneNumber =? where id= ?";
     private static final String UPDATE_PASS_SQL = "update user set password= ? where id = ?;";
 
@@ -40,11 +40,6 @@ public class UserDAO implements IUserDAO{
         } catch (SQLException e) {
             printSQLException(e);
         }
-    }
-    public static void main(String[] args) throws SQLException {
-        UserDAO userDAO = new UserDAO();
-        userDAO.insertLogin(new User("hungdz","hung@gmail.com","hung789"));
-        System.out.println(userDAO.selectAll());
     }
     @Override
     public void insertLogin(User user) throws SQLException {
@@ -168,9 +163,10 @@ public class UserDAO implements IUserDAO{
     @Override
     public List<User> searchByName(String name) {
         List<User> users = new ArrayList<>();
+
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME);) {
-            preparedStatement.setString(1,name);
+            preparedStatement.setString(1,"%"+name+"%");
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -189,5 +185,10 @@ public class UserDAO implements IUserDAO{
             printSQLException(e);
         }
         return users;
+    }
+
+    public static void main(String[] args) {
+        UserDAO u = new UserDAO();
+        System.out.println(u.searchByName("binh"));
     }
 }

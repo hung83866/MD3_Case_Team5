@@ -27,13 +27,14 @@ public class Blog {
         this.role = role;
     }
 
-    public Blog(String title, String date, String content, String img, String description, int role) {
+    public Blog(String title, String date, String content, String img, String description, int role,User user) {
         this.title = title;
         this.date = date;
         this.content = content;
         this.img = img;
         this.description = description;
         this.role = role;
+        this.user = user;
     }
 
     public Blog(int id, String title, String date, String content, String img, String description, int role, User user) {

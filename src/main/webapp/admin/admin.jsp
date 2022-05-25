@@ -48,7 +48,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"><a href="index.html"><img
+                        <div class="logo"><a href="/UserServlet?action=userlist"><img
                                 src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png"
                                 style="height: 100px;width:100px;border-radius: 12%" alt="#"></a></div>
                     </div>
@@ -74,7 +74,7 @@
                                 <li>
                                     <form method="post" action="UserServlet?action=search">
                                         <input type="text" name="name" placeholder="Search user by name..">
-                                        <button><img src="images/search_icon.png" alt="#"/></button>
+                                        <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
                                 </li>
 <%--                                <li>--%>
@@ -96,8 +96,8 @@
             <div class="col-md-12">
                 <div class="heading">
                     <h3>User <span class="orange_color">List</span></h3>
-                    <h3 style="color : red;">${mes1}</h3>
-                    <h3 style="color: red;">${mes}</h3>
+                    <h4 style="color : red;">${mes1}</h4>
+                    <h4 style="color: red;">${mes}</h4>
 
                 </div>
             </div>
@@ -114,7 +114,7 @@
                         <div class=" button_section">
                             <a STYLE="background: #184091;border-radius: 5%" href="/UserServlet?action=myblog1&id=${users.id}">VIEW</a>
                             <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=profile&id=${users.id}">PROFILE</a>
-                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=deleteUser&id=${users.id}">DELETE</a>
+<%--                            <a style="background: #184091;border-radius: 5%" href="/UserServlet?action=deleteUser&id=${users.id}">DELETE</a>--%>
                         </div>
                     </div>
                 </div>

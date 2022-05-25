@@ -43,7 +43,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"> <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+                        <div class="logo"> <a href="/UserServlet?action=userlist"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
                     </div>
                 </div>
             </div>
@@ -62,12 +62,10 @@
                                     <a href="/UserServlet?action=logout">Log out</a>
                                 </li>
                                 <li>
-                                    <form>
-                                        <input type="text" name="search" placeholder="Search..">
+                                    <form method="post" action="UserServlet?action=search">
+                                        <input type="text" name="name" placeholder="Search user by name..">
+                                        <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
-                                </li>
-                                <li>
-                                    <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#" /></a>
                                 </li>
 
                             </ul>

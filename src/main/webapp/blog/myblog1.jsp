@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ADMIN
+  Date: 5/21/2022
+  Time: 2:02 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -80,30 +87,41 @@
     </div>
     <!-- end header inner -->
 </header>
+<div class="button_section">
+    <a STYLE=" margin-top:20px;float : right; background: #abdde5" href="/BlogServlet?action=create&id=${id}">NEW BLOG</a>
+</div>
 <div class="section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h3> content <span class="orange_color">blog</span></h3>
+                    <h3> Blog <span class="orange_color">${user.userName}</span></h3>
                 </div>
             </div>
         </div>
+        <h4 style="color: red;">${mes}</h4>
+        <c:forEach items="${blogs}" var="blogs">
 
-        <div class="row">
-            <div class="col-md-6">
-                <img src="${view.img}" alt="#" />
-            </div>
-            <div class="col-md-6">
-                <div class="full blog_cont">
-                    <h4>${view.title}</h4>
-                    <h5>date : ${view.date}</h5>
-                    <h5>author : <a href="/UserServlet?action=myblog2&id=${view.user.id}&iduser=${id}">${view.user.userName}</a></h5>
-                    <h5>description : ${view.description}</h5>
-                    <h5>${view.content}</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="${blogs.img}" alt="#"/>
+                </div>
+                <div class="col-md-6">
+                    <div class="full blog_cont">
+                        <h4>${blogs.title}</h4>
+                        <h5>${blogs.date}</h5>
+
+                        <div class="d-grid gap-2 d-md-block">
+                           <button class="btn btn-primary" type="button"> <a href="/BlogServlet?action=view&id=${id}&idblog=${blogs.id}">VIEW</a></button>
+<%--                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a></button>--%>
+<%--                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=delete&id=${id}&idblog=${blogs.id}">DELETE</a></button>--%>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <br>
+            <br>
+        </c:forEach>
     </div>
 </div>
 

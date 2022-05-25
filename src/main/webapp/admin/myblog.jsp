@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +28,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="images/fevicon.png" type="image/gif"/>
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
@@ -50,7 +50,9 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"> <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+                        <div class="logo"><a href="/UserServlet?action=userlist"><img
+                                src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png"
+                                style="height: 100px;width:100px;border-radius: 12%" alt="#"></a></div>
                     </div>
                 </div>
             </div>
@@ -69,12 +71,11 @@
                                     <a href="/UserServlet?action=logout">Log out</a>
                                 </li>
                                 <li>
-                                    <form>
-                                        <input type="text" name="search" placeholder="Search..">
+                                    <form method="post" action="UserServlet?action=search">
+                                        <input type="text" name="name" placeholder="Search user by name..">
+                                        <button><img style="background: #1d2124 ;border: solid"
+                                                     src="images/search_icon.png" alt="#"/></button>
                                     </form>
-                                </li>
-                                <li>
-                                    <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#" /></a>
                                 </li>
 
                             </ul>
@@ -98,22 +99,24 @@
                 </div>
             </div>
         </div>
+        <h4 style="color: red;">${mes}</h4>
         <c:forEach items="${blogs}" var="blogs">
-            <div class="row">
+
+            <div  class="row">
                 <div class="col-md-6">
                     <img src="${blogs.img}" alt="#"/>
                 </div>
                 <div class="col-md-6">
                     <div class="full blog_cont">
                         <h4>${blogs.title}</h4>
-                        <h5>${blogs.date}</h5>
+                        <h5>Date : ${blogs.date}</h5>
+                        <h5>author : ${blogs.user.userName}</h5>
                         <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-primary" type="button"> <a href="/BlogServlet?action=view1&id=${id}&idblog=${blogs.id}">VIEW</a></button>
-<%--                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=edit&id=${id}&idblog=${blogs.id}">EDIT</a></button>--%>
-                            <button class="btn btn-primary" type="button"><a href="/BlogServlet?action=delete1&id=${id}&idblog=${blogs.id}">DELETE</a></button>
+                            <button class="btn btn-primary" type="button"><a
+                                    href="/BlogServlet?action=view1&id=${id}&idblog=${blogs.id}">VIEW</a></button>
+                            <button class="btn btn-primary" type="button"><a
+                                    href="/BlogServlet?action=delete1&id=${id}&idblog=${blogs.id}">DELETE</a></button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -128,14 +131,18 @@
         <div class="row">
             <div class="col-lg-2 col-md-6">
                 <div class="footer_links">
-                    <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#" /></a>
+                    <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png"
+                                              style="height: 100px;width:100px;border-radius: 12%" alt="#"/></a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <ul class="contact_information">
-                    <li><span><img src="images/location_icon.png" alt="#" /></span><span class="text_cont">CodeGym<br>Ha Noi City</span></li>
-                    <li><span><img src="images/phone_icon.png" alt="#" /></span><span class="text_cont">0814 229 299<br>0888 886 688</span></li>
-                    <li><span><img src="images/mail_icon.png" alt="#" /></span><span class="text_cont">hungdz@codegym.com<br>binhdz@codegym.com</span></li>
+                    <li><span><img src="images/location_icon.png" alt="#"/></span><span class="text_cont">CodeGym<br>Ha Noi City</span>
+                    </li>
+                    <li><span><img src="images/phone_icon.png" alt="#"/></span><span class="text_cont">0814 229 299<br>0888 886 688</span>
+                    </li>
+                    <li><span><img src="images/mail_icon.png" alt="#"/></span><span class="text_cont">hungdz@codegym.com<br>binhdz@codegym.com</span>
+                    </li>
                 </ul>
                 <ul class="social_icon">
                     <li><a href="https://www.facebook.com/buihaibinh.94.bui"><i class="fa fa-facebook"></i></a></li>
@@ -150,13 +157,13 @@
                     <form action="index.html">
                         <fieldset>
                             <div class="field">
-                                <input type="text" name="name" placeholder="Your Name" required="" />
+                                <input type="text" name="name" placeholder="Your Name" required=""/>
                             </div>
                             <div class="field">
-                                <input type="email" name="email" placeholder="Email" required="" />
+                                <input type="email" name="email" placeholder="Email" required=""/>
                             </div>
                             <div class="field">
-                                <input type="text" name="subject" placeholder="Subject" required="" />
+                                <input type="text" name="subject" placeholder="Subject" required=""/>
                             </div>
                             <div class="field">
                                 <textarea placeholder="Message"></textarea>

@@ -46,7 +46,7 @@
                                 </div>
                                 <div  class="">
                                         <a href="/UserServlet?action=edit1&id=${user.id}" style="width: 150px" class="btn btn-outline-primary me-1 flex-grow-1">Edit</a>
-                                        <a href="/UserServlet?action=delete&id=${user.id}" style="width: 150px" class="btn btn-outline-primary me-1 flex-grow-1">Delete</a>
+                                        <a href="/UserServlet?action=deleteUser&id=${user.id}" style="width: 150px" class="btn btn-outline-primary me-1 flex-grow-1">Delete</a>
                                 </div >
                             </div>
                         </div>

@@ -12,25 +12,24 @@ import java.util.List;
 
 public class BlogDAO implements IBlogDAO{
 
-    private static final String INSERT_BLOG_SQL = "INSERT INTO blog (title, date, content, img, description, role) VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_BLOG_SQL = "INSERT INTO blog (title, date, content, img, description, role,iduser ) VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_BLOG_BY_ID = "select * from blog where id =?";
     private static final String SELECT_ALL_BLOGS = "select * from blog";
     private static final String DELETE_BLOGS_SQL = "delete from blog where id = ?;";
     private static final String UPDATE_BLOGS_SQL = "update blog set title=?, date=?, content=?, img=?, description=?, role=? where iduser = ? and id = ?;";
-    private static final String SEARCH_BY_NAME = "select title, date, content, img, description, role from blog where title = ?;";
+    private static final String SEARCH_BY_NAME = "select * from blog where title like ?;";
     private static final String SELECT_BY_IDUSER = "SELECT * from BLOG where iduser=?;";
     private static final String DELETE_BLOGS_SQL1 = "delete from blog where id = ? and iduser = ?;";
     public BlogDAO() {
     }
 
-    public static void main(String[] args) {
-        BlogDAO blogDAO = new BlogDAO();
-        System.out.println(blogDAO.select(1));
-    }
+//    public static void main(String[] args) {
+//        BlogDAO blogDAO = new BlogDAO();
+//        blogDAO.insert();
+//    }
     @Override
     public void insert(Blog blog) throws SQLException {
         System.out.println(INSERT_BLOG_SQL);
-        // try-with-resource statement will auto close the connection.
         try (Connection connection = DBconnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_BLOG_SQL)) {
             preparedStatement.setString(1, blog.getTitle());
             preparedStatement.setString(2, blog.getDate());
@@ -38,6 +37,7 @@ public class BlogDAO implements IBlogDAO{
             preparedStatement.setString(4, blog.getImg());
             preparedStatement.setString(5, blog.getDescription());
             preparedStatement.setInt(6, blog.getRole());
+            preparedStatement.setInt(7,blog.getUser().getId());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -199,7 +199,7 @@ public class BlogDAO implements IBlogDAO{
         try (Connection connection = DBconnection.getConnection();
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME);) {
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, "%"+name+"%");
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();

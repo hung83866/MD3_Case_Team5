@@ -45,7 +45,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"> <a href="index.html"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+                        <div class="logo"> <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
                     </div>
                 </div>
             </div>
@@ -67,12 +67,10 @@
                                     <a href="/UserServlet?action=logout">Log out</a>
                                 </li>
                                 <li>
-                                    <form>
-                                        <input type="text" name="search" placeholder="Search..">
+                                    <form method="post" action="UserServlet?action=search1&id=${id}">
+                                        <input type="text" name="name" placeholder="Search blog by title..">
+                                        <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
-                                </li>
-                                <li>
-                                    <a href="/UserServlet?action=search"><img src="images/search_icon.png" alt="#" /></a>
                                 </li>
                             </ul>
                         </nav>
@@ -100,14 +98,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="full comment_form">
-                    <form method="post" action="/BlogServlet?action=create">
+                    <form method="post" action="/BlogServlet?action=create&id=${id}">
                         <fieldset>
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <input type="text" name="title" placeholder="Title" />
                                         <input type="text" name="description" placeholder="Description" required="#" />
-                                        <input type="text" name="date" placeholder="Date" required="#" />
+                                        <input type="text" name="img" placeholder="Link Image" required="#" />
+                                        <input type="text" name="role" placeholder="role" required="#" /><span>1=public 0=private</span>
                                     </div>
                                     <div class="col-md-6">
                                         <textarea class="wdt" name="content" placeholder="Content"></textarea>
@@ -116,7 +115,7 @@
                                 <div class="row margin_top_30">
                                     <div class="col-md-12">
                                         <div class="center">
-                                            <button>Send</button>
+                                            <button>Post</button>
                                         </div>
                                     </div>
                                 </div>

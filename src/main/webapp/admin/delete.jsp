@@ -21,7 +21,7 @@
             <th> <form method="post" action="BlogServlet?action=delete1&id=${id}&idblog=${idblog}" ><br>
                 <button style="width: 100px;height: 50px;background: #38c8a8;border-radius: 20px">YES</button>
             </form></th>
-            <th><a href="/UserServlet?action=userlist">
+            <th><a href="/UserServlet?action=myblog1&id=${id}">
                 <button style="width: 100px;height: 50px ;background: #38c8a8;border-radius: 20px">NO</button>
             </a>
             </th>

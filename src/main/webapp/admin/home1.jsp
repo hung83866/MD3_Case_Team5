@@ -50,7 +50,7 @@
             <div class="col-lg-3 logo_section">
                 <div class="full">
                     <div class="center-desk">
-                        <div class="logo"> <a href="/UserServlet?action=n&id=${id}"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
+                        <div class="logo"> <a href="/UserServlet?action=userlist"><img src="images/Trắng%20và%20Xám%20Vòng%20nguyệt%20quế%20Hipster%20Logo.png" style="height: 100px;width:100px;border-radius: 12%" alt="#"></a> </div>
                     </div>
                 </div>
             </div>
@@ -69,12 +69,10 @@
                                     <a href="/UserServlet?action=logout&id=0">LOG OUT</a>
                                 </li>
                                 <li>
-                                    <form action="/UserServlet?action=search">
-                                        <input type="text" id="search" name="search" placeholder="Search..">
+                                    <form method="post" action="UserServlet?action=search2">
+                                        <input type="text" name="name" placeholder="Search user by name..">
+                                        <button><img style="background: #1d2124 ;border: solid" src="images/search_icon.png" alt="#"/></button>
                                     </form>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="images/search_icon.png" alt="#"/></a>
                                 </li>
 
                             </ul>
@@ -98,16 +96,19 @@
         <c:forEach items="${blogs}" var="blogs">
             <div class="row">
                 <div class="col-md-6">
-                    <a href="/BlogServlet?action=view1&id=${id}&idblog=${blogs.id}"><img src="${blogs.img}" alt="#" /></a>
+                    <a href="/BlogServlet?action=view1&id=${blogs.user.id}&idblog=${blogs.id}"><img src="${blogs.img}" alt="#" /></a>
                 </div>
                 <div class="col-md-6">
                     <div class="full blog_cont">
-                        <h4><a href="/BlogServlet?action=view1&id=${id}&idblog=${blogs.id}">${blogs.title}</a></h4>
+                        <h4><a href="/BlogServlet?action=view1&id=${blogs.user.id}&idblog=${blogs.id}">${blogs.title}</a></h4>
                         <h5> Date : ${blogs.date}</h5>
+                        <h5>author : ${blogs.user.userName}</h5>
 <%--                        <p>${blogs.role}</p>--%>
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
         </c:forEach>
     </div>
 </div>
